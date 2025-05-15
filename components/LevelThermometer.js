@@ -1,7 +1,7 @@
 // @flow
 
 import * as d3 from 'd3'
-import { pointsToLevels, categoryPointsFromMilestoneMap, categoryColorScale, categoryIds } from '../constants'
+import { pointsToLevels, maxLevel, categoryPointsFromMilestoneMap, categoryColorScale, categoryIds } from '../constants'
 import React from 'react'
 import type { MilestoneMap } from '../constants'
 
@@ -29,17 +29,22 @@ class LevelThermometer extends React.Component<Props> {
     super(props)
 
     this.pointScale = d3.scaleLinear()
-      .domain([0, 135])
+      .domain([0, maxLevel])
       .rangeRound([0, width - margins.left - margins.right]);
+    
+    const levelPoints = Object
+      .keys(pointsToLevels)
+      .map(d => +d)
+      .sort((a,b) => a - b);
 
     this.topAxisFn = d3.axisTop()
       .scale(this.pointScale)
-      .tickValues(Object.keys(pointsToLevels))
+      .tickValues(levelPoints)
       .tickFormat(points => pointsToLevels[points])
 
     this.bottomAxisFn = d3.axisBottom()
       .scale(this.pointScale)
-      .tickValues(Object.keys(pointsToLevels))
+      .tickValues(levelPoints)
   }
 
   componentDidMount() {

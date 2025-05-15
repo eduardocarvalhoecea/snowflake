@@ -1,30 +1,55 @@
 // @flow
 import * as d3 from 'd3'
 
-export type TrackId = 'MOBILE' | 'WEB_CLIENT' | 'FOUNDATIONS' | 'SERVERS' |
-  'PROJECT_MANAGEMENT' | 'COMMUNICATION' | 'CRAFT' | 'INITIATIVE' |
-  'CAREER_DEVELOPMENT' | 'ORG_DESIGN' | 'WELLBEING' | 'ACCOMPLISHMENT' |
-  'MENTORSHIP' | 'EVANGELISM' | 'RECRUITING' | 'COMMUNITY'
+export type TrackId =
+  // Technical Skills
+  | 'IMPLEMENTATION'
+  | 'QUALITY_TESTING'
+  | 'DEBUGGING_MONITORING'
+  | 'UNDERSTANDING_CODE'
+  | 'SYSTEM_DESIGN'
+
+  // Delivery
+  | 'PROJECT_MANAGEMENT'
+  | 'PRIORITISATION_DEPENDENCIES'
+  | 'ADAPTABILITY_CHANGE'
+  | 'RELIABILITY_ACCOUNTABILITY'
+
+  // Soft Skills
+  | 'COMMUNICATION_SHARING'
+  | 'TEAMWORK_RELATIONSHIPS'
+  | 'FEEDBACK_DELIVERY'
+  | 'FEEDBACK_RECEPTIVENESS'
+  | 'STRATEGIC_ALIGNMENT'
+  | 'MENTORSHIP'
+  | 'VISION';
+
 export type Milestone = 0 | 1 | 2 | 3 | 4 | 5
 
 export type MilestoneMap = {
-  'MOBILE': Milestone,
-  'WEB_CLIENT': Milestone,
-  'FOUNDATIONS': Milestone,
-  'SERVERS': Milestone,
-  'PROJECT_MANAGEMENT': Milestone,
-  'COMMUNICATION': Milestone,
-  'CRAFT': Milestone,
-  'INITIATIVE': Milestone,
-  'CAREER_DEVELOPMENT': Milestone,
-  'ORG_DESIGN': Milestone,
-  'WELLBEING': Milestone,
-  'ACCOMPLISHMENT': Milestone,
-  'MENTORSHIP': Milestone,
-  'EVANGELISM': Milestone,
-  'RECRUITING': Milestone,
-  'COMMUNITY': Milestone
-}
+  // Technical Skills
+  IMPLEMENTATION: Milestone;
+  QUALITY_TESTING: Milestone;
+  DEBUGGING_MONITORING: Milestone;
+  UNDERSTANDING_CODE: Milestone;
+  SYSTEM_DESIGN: Milestone;
+
+  // Delivery
+  PROJECT_MANAGEMENT: Milestone;
+  PRIORITISATION_DEPENDENCIES: Milestone;
+  ADAPTABILITY_CHANGE: Milestone;
+  RELIABILITY_ACCOUNTABILITY: Milestone;
+
+  // Soft Skills
+  COMMUNICATION_SHARING: Milestone;
+  TEAMWORK_RELATIONSHIPS: Milestone;
+  FEEDBACK_DELIVERY: Milestone;
+  FEEDBACK_RECEPTIVENESS: Milestone;
+  STRATEGIC_ALIGNMENT: Milestone;
+  MENTORSHIP: Milestone;
+  VISION: Milestone;
+};
+
 export const milestones = [0, 1, 2, 3, 4, 5]
 
 export const milestoneToPoints = (milestone: Milestone): number => {
@@ -40,24 +65,33 @@ export const milestoneToPoints = (milestone: Milestone): number => {
 }
 
 export const pointsToLevels = {
-  '0': '1.1',
-  '5': '1.2',
-  '11': '1.3',
-  '17': '2.1',
-  '23': '2.2',
-  '29': '2.3',
-  '36': '3.1',
-  '43': '3.2',
-  '50': '3.3',
-  '58': '4.1',
-  '66': '4.2',
-  '74': '4.3',
-  '90': '5.1',
-  '110': '5.2',
-  '135': '5.3',
+  // 1.x
+  0:   '1.1',
+  10:   '1.2',
+  22:   '1.3',
+ // 2.x
+  40:   '2.1',
+  57:   '2.2',
+  80:   '2.3',
+ // 3.x
+  80:   '3.1',
+ 102:   '3.2',
+ 147:   '3.3',
+ // 4.x
+ 147:   '4.1',
+ 192:   '4.2',
+ 212:   '4.3',
+ // 5.x
+ 212:   '5.1',
+ 232:   '5.2',
+ 260:   '5.3',
+ // 6.x
+ 260:   '6.1',
+ 288:   '6.2',
+ 320:   '6.3',
 }
 
-export const maxLevel = 135
+export const maxLevel = 320
 
 export type Track = {
   displayName: string,
@@ -71,1095 +105,1265 @@ export type Track = {
 }
 
 type Tracks = {|
-  'MOBILE': Track,
-  'WEB_CLIENT': Track,
-  'FOUNDATIONS': Track,
-  'SERVERS': Track,
-  'PROJECT_MANAGEMENT': Track,
-  'COMMUNICATION': Track,
-  'CRAFT': Track,
-  'INITIATIVE': Track,
-  'CAREER_DEVELOPMENT': Track,
-  'ORG_DESIGN': Track,
-  'WELLBEING': Track,
-  'ACCOMPLISHMENT': Track,
-  'MENTORSHIP': Track,
-  'EVANGELISM': Track,
-  'RECRUITING': Track,
-  'COMMUNITY': Track
-|}
+  // Technical Skills
+  IMPLEMENTATION: Track,
+  QUALITY_TESTING: Track,
+  DEBUGGING_MONITORING: Track,
+  UNDERSTANDING_CODE: Track,
+  SYSTEM_DESIGN: Track,
+
+  // Delivery
+  PROJECT_MANAGEMENT: Track,
+  PRIORITISATION_DEPENDENCIES: Track,
+  ADAPTABILITY_CHANGE: Track,
+  RELIABILITY_ACCOUNTABILITY: Track,
+
+  // Soft Skills
+  COMMUNICATION_SHARING: Track,
+  TEAMWORK_RELATIONSHIPS: Track,
+  FEEDBACK_DELIVERY: Track,
+  FEEDBACK_RECEPTIVENESS: Track,
+  STRATEGIC_ALIGNMENT: Track,
+  MENTORSHIP: Track,
+  VISION: Track,
+|};
 
 export const tracks: Tracks = {
-  "MOBILE": {
-    "displayName": "Mobile",
+ "IMPLEMENTATION": {
+    "displayName": "Implementação",
     "category": "A",
-    "description": "Develops expertise in native mobile platform engineering, such as iOS or Android",
-    "milestones": [{
-      "summary": "Works effectively within established iOS or Android architectures, following current best practices",
-      "signals": [
-        "Delivers features requiring simple local modifications",
-        "Adds simple actions that call server endpoints",
-        "Reuses existing components appropriately",
-      ],
-      "examples": [
-        "Added existing button to a different iOS surface",
-        "Add follow button for publications on Android",
-        "Fetched and displayed a new stream, using existing stream item styles",
-      ],
-    }, {
-      "summary": "Develops new instances of existing architecture, or minor improvements to existing architecture",
-      "signals": [
-        "Defines new useful and appropriate proto-generated objects",
-        "Creates simple new activities on Android",
-        "Migrates code from old patterns to new patterns",
-      ],
-      "examples": [
-        "Upgraded SDWebImage to a new major version",
-        "Added support for rendering a new type of stream item",
-        "Prototyped a simple new feature quickly",
-      ],
-    }, {
-      "summary": "Designs major new features and demonstrates a nuanced understanding of mobile platform constraints",
-      "signals": [
-        "Implements complex features with a large product surface area",
-        "Works effectively with  Android reactive programming framework",
-        "Adds support for new iOS features after a major iOS version upgrade",
-      ],
-      "examples": [
-        "Designed iOS caching strategy for offline reading",
-        "Built series reader on Android",
-        "Informed the team about recent best practice changes and deprecations",
-      ],
-    }, {
-      "summary": "Builds complex, reusable architectures that pioneer best practices and enable engineers to work more effectively",
-      "signals": [
-        "Pioneers architecture migration strategies that reduce programmer burden",
-        "Fixes subtle memory management issues",
-        "Implements interactive dismissals that bring delight",
-      ],
-      "examples": [
-        "Upgraded CocoaPods to a new major version",
-        "Designed architecture for fetching and rendering stream items",
-        "Migrated Android persistance layer to reactive programming",
-      ],
-    }, {
-      "summary": "Is an industry-leading expert in mobile engineering or sets strategic mobile direction for an eng team",
-      "signals": [
-        "Defines long-term goals and ensures active projects are in service of them",
-        "Designs and builds innovative, industry-leading UI interactions",
-        "Invents new techniques to responsibly stretch limits of the Android platform",
-      ],
-      "examples": [
-        "Defined and drove complete migration plan to Swift or Kotlin",
-        "Implemented Android recycler views before platform support existed",
-        "Pioneered application-level abstractions for multi-app environment",
-      ],
-    }],
+    "description": "Entrega soluções técnicas corretas, eficientes e alinhadas aos padrões da empresa. Envolve escrever código ou esquemáticos, configurar periféricos, montar pipelines de automação e garantir que a solução funcione conforme requisitos.",
+    "milestones": [
+      {
+        "summary": "Entrega o mínimo funcional, seguindo instruções passo a passo e padrões estabelecidos.",
+        "signals": [
+          "Segue estritamente um checklist sem antecipar problemas",
+          "Depende de orientação para cada etapa e revisa o próprio trabalho apenas após feedback",
+          "Não considera cenários de falha além do exemplo dado"
+        ],
+        "examples": [
+          "HW/FW: Configurar I²C para leitura de sensor conforme tutorial, sem tratar erros de bus",
+          "Software: Criar um endpoint simples que retorna texto estático; sem validação ou testes",
+          "TI: Instalar e configurar um servidor web seguindo documentação oficial, sem ajustes de segurança",
+          "TI: Registrar manualmente novo SIM card em planilha, anotando ICCID e plano, sem usar o sistema de gestão"
+        ]
+      },
+      {
+        "summary": "Trabalha de forma quase autônoma em tarefas rotineiras, mas ainda requer revisão em detalhes críticos.",
+        "signals": [
+          "Lembra de adicionar logs básicos e verifica seu próprio código/esquemático",
+          "Lida com erros conhecidos, mas esquece casos de borda",
+          "Ajuda colegas em dúvidas, porém precisa de confirmação antes de finalizar"
+        ],
+        "examples": [
+          "HW/FW: Escrever driver UART com retry após timeout, mas sem relatório detalhado de falhas",
+          "Software: Implementar CRUD simples em framework (Express/Django) com testes unitários básicos",
+          "TI: Criar script de backup automático com retry e log, mas sem alertas em caso de falha persistente",
+          "TI: Importar lote de SIM cards no sistema de gestão via CSV, mas sem validar atributos (data de expiração, status)"
+        ]
+      },
+      {
+        "summary": "Entrega soluções estáveis, prevendo cenários de falha comuns e integrando testes automáticos.",
+        "signals": [
+          "Antecipar e tratar timeouts, gargalos de recursos e condições de erro típicas",
+          "Configurar e usar ferramentas de teste/monitoramento mínimo sem supervisão",
+          "Compartilha aprendizados e atualiza documentação interna"
+        ],
+        "examples": [
+          "HW/FW: Desenvolver biblioteca modular de SPI com testes unitários em CI e documentação de API",
+          "Software: Dockerizar microserviço, implementar testes de integração e rodar pipeline CI/CD completo",
+          "TI: Provisionar servidores via Ansible com validação de linting e playbook idempotente",
+          "TI: Desenvolver script Python que carrega automaticamente SIM cards ao sistema de gestão, atribuindo planos e status"
+        ]
+      },
+      {
+        "summary": "Identifica e resolve gargalos, propõe refatorações e automações que beneficiam a equipe inteira.",
+        "signals": [
+          "Sugere melhorias de arquitetura ou processos antes de serem solicitadas",
+          "Conduz revisões de design para todo o time, mentorando na adoção de padrões",
+          "Automatiza workflows repetitivos, liberando tempo dos colegas para tarefas críticas"
+        ],
+        "examples": [
+          "HW/FW: Refatorar bootloader para reduzir tempo de inicialização em 30% e automatizar deep-sleep",
+          "Software: Quebrar monólito em serviços desacoplados, reduzindo latência de 200 ms para 50 ms",
+          "TI: Implementar pipeline de patching seguro (scripts, agendamento, relatórios e alertas) para todos os servidores",
+          "TI: Criar módulo Ansible para provisionar SIM cards em estoque, incluindo parametrização de fornecedor e data de validade"
+        ]
+      },
+      {
+        "summary": "Cria frameworks, templates e ferramentas que se tornam referência e elevam o nível de toda a organização.",
+        "signals": [
+          "Lidera iniciativas estratégicas de melhoria contínua e set-up de práticas de excelência",
+          "Publica guias internos e treina times em novas metodologias",
+          "Atua como mentor sênior, influenciando roadmap técnico e cultural da empresa"
+        ],
+        "examples": [
+          "HW/FW: Desenvolver HAL unificado (ESP32, STM32, Arduino) com CLI para flashing e HIL automáticos",
+          "Software: Criar framework interno de geração de APIs e SDKs, com documentação, testes de contrato e deploy automatizado",
+          "TI: Projetar e implementar plataforma self-service de CI/CD para equipes de TI e DevOps, com dashboards de health-checks e compliance",
+          "TI: Implementar framework interno CLI que gerencia todo o ciclo de vida do SIM card (estoque, ativação, expiração) integrando sistema de gestão, ERP e APIs de operadora"
+        ]
+      }
+    ]
+  },
+  "QUALITY_TESTING": {
+    displayName: "Qualidade e Teste",
+    category: "A",
+    description: "Garante robustez e confiabilidade por meio de testes (unitários, de integração, HIL), revisão de código/esquemáticos e uso de ferramentas de análise estática. Inclui automação de pipelines de teste e adoção de boas práticas de cobertura.",
+    milestones: [
+      {
+        summary: "Executa testes mínimos seguindo scripts manuais; não cria novos casos de teste nem automatizações.",
+        signals: [
+          "Executa teste manual de funcionalidade única, sem registrar resultados detalhados",
+          "Roda checklists fornecidos, sem adaptar a novos cenários de falha",
+          "Depende de QA ou colegas para planejar casos de teste",
+        ],
+        examples: [
+          "HW/FW: Conecta osciloscópio e verifica sinal de clock em um ponto específico, registrando “pass/fail” em planilha",
+          "Software: Executa testes unitários existentes localmente, sem adicionar novos casos; copia comandos de README",
+          "TI: Verifica manualmente se serviços estão ativos (systemctl status) e registra resultado em relatório diário",
+          "TI: Testar manualmente ativação de um SIM card em um único modem e registrar “pass/fail” em planilha",
+        ],
+      },
+      {
+        summary: "Cria casos de teste básicos e scripts de verificação, mas com cobertura limitada e pouca automação.",
+        signals: [
+          "Adiciona testes unitários para funções centrais, mas omite cenários de erro",
+          "Usa ferramentas de linting/analysis, mas não configura integração no pipeline",
+          "Documenta casos de falha conhecidos, mas sem evoluir o catálogo de testes",
+        ],
+        examples: [
+          "HW/FW: Escreve teste JUnit-like para driver I²C em simulação, cobrindo leitura/escrita, mas não timeout nem NACK",
+          "Software: Implementa testes unitários em Jest ou PyTest cobrindo 70% de uma camada de negócio, sem mocks de dependências externas",
+          "TI: Cria script de health-check automático que testa portas de serviço, mas não envia alertas em falha",
+          "TI: Criar checklist de ativação de SIM cards e seguir manualmente para lote de 5 unidades",
+        ],
+      },
+      {
+        summary: "Integra testes unitários e de integração ao CI, mede cobertura e captura regressões sem supervisão.",
+        signals: [
+          "Configura pipeline para falhar build em cobertura abaixo de meta",
+          "Automatiza testes de hardware-in-the-loop para casos de comunicação críticos",
+          "Analisa relatórios de cobertura e corrige gaps críticos",
+        ],
+        examples: [
+          "HW/FW: Monta banco de testes HIL para comunicação SPI e executa em GitHub Actions, com geração automática de relatórios",
+          "Software: Configura pipeline GitHub Actions que roda testes unitários, de integração e static analysis, bloqueando merges com erros",
+          "TI: Implementa monitoramento com Nagios/Prometheus que testa serviços e dispara alertas via Telegram e email em cada falha",
+          "TI: Escrever script PowerShell que ativa e desativa SIM cards em homologação, gera CSV com resultados",
+        ],
+      },
+      {
+        summary: "Amplia cobertura de testes, introduz frameworks e gera relatórios que guiam melhorias contínuas.",
+        signals: [
+          "Identifica áreas de risco em código/esquemáticos e prioriza criação de testes para elas",
+          "Conduz workshops de melhores práticas de QA/Testes para toda a equipe",
+          "Automatiza geração de métricas de qualidade (MTTR, flakiness)",
+        ],
+        examples: [
+          "HW/FW: Desenvolve framework de testes end-to-end para placas custom, incluindo scripts de setup e teardown automáticos",
+          "Software: Introduz Pact ou Postman CI para contract testing entre microserviços, assegurando compatibilidade",
+          "TI: Cria dashboards Grafana com métricas de disponibilidade, tempo médio de resposta e tempos de execução de scripts de manutenção",
+          "TI: Desenvolver testes automatizados em Python que simulam ativação em modems celulares e satélite, validando respostas de API",
+        ],
+      },
+      {
+        summary: "Define políticas, frameworks e ferramentas de QA que se tornam padrão corporativo; mentor de cultura de qualidade.",
+        signals: [
+          "Formula guidelines de TDD/BDD para desenvolvimento cross-team e treina times",
+          "Pesquisa e adota novas ferramentas de fuzzing, coverage ou análise estática avançada",
+          "Representa a empresa em conferências internas/externas sobre qualidade de software e sistemas embarcados",
+        ],
+        examples: [
+          "HW/FW: Publica e mantém biblioteca de testes parametrizáveis (pytest-like) para automação de validação de firmware em múltiplas plataformas",
+          "Software: Constrói e documenta um framework interno de BDD (Cucumber, SpecFlow) integrado ao CI e pipelines de release",
+          "TI: Projeta e implementa plataforma de “Quality as Code”, onde playbooks Ansible/Terraform são validados automaticamente antes de cada alteração de infraestrutura",
+          "TI: Lançar suíte end-to-end em CI/CD que testa fluxo completo de aquisição, ativação e expiração de SIM cards, bloqueando merges em falhas",
+        ],
+      },
+    ],
+  },
+  "DEBUGGING_MONITORING": {
+    displayName: "Debug & Monitoramento",
+    category: "A",
+    description: "Identifica, isola e corrige falhas em desenvolvimento e produção. Usa debuggers (JTAG, SWO), analisadores lógicos, logs e métricas (Grafana, UART prints), constrói alertas e dashboards para antecipar problemas.",
+    milestones: [
+      {
+        summary: "Usa apenas métodos básicos de debugging e observações manuais; não configura alertas nem dashboards.",
+        signals: [
+          "Roda o sistema e observa diretamente o erro no terminal ou display",
+          "Copia comandos de depuração de um tutorial sem entender o fluxo completo",
+          "Verifica manualmente logs sem filtragem ou análise"
+        ],
+        examples: [
+          "HW/FW: Conecta o osciloscópio em um ponto do circuito para confirmar pulso, sem registrar dados",
+          "Software: Adiciona `console.log`/`print` em trechos de código para descobrir onde falha",
+          "TI: Executa `top` ou `htop` manualmente em servidor e anota consumo de CPU em planilha",
+          "TI: Usar `ping` manual em modem 4G para verificar conectividade de um SIM card"
+        ]
+      },
+      {
+        summary: "Utiliza ferramentas de debugging e monitoração básicas; configura logs estruturados, mas sem alertas ou automação.",
+        signals: [
+          "Define breakpoints e step‐through em IDE para investigar falhas conhecidas",
+          "Centraliza logs em arquivo ou serviço simples (e.g., Logstash sem dashboards)",
+          "Examinar métricas básicas periodicamente sem notificações ativas"
+        ],
+        examples: [
+          "HW/FW: Usa JTAG para depurar ISR em ESP32, identifica causa de travamento em buffer DMA",
+          "Software: Configura Winston/Log4j para logs JSON e filtra erros 500 em log file",
+          "TI: Instala e configura Prometheus para coletar métricas de uso de CPU e memória, mas sem alertas",
+          "TI: Configurar logs básicos do Snipe-IT para registrar erro de importação de SIM cards"
+        ]
+      },
+      {
+        summary: "Encadeia debugging e monitoring em pipelines de CI/CD, automatiza alertas básicos e investiga incidentes em produção de forma autônoma.",
+        signals: [
+          "Configura dashboards minimalistas (Grafana) e alerta por e-mail/Telegram em erros de severidade média",
+          "Reproduz bugs em ambiente de staging usando snapshots de dados",
+          "Documenta causas raízes e publica post-mortems simples"
+        ],
+        examples: [
+          "HW/FW: Monta script no CI que executa captura de sinal via analisador lógico em cada build e compara com baseline",
+          "Software: Implementa APM (New Relic, Datadog) para rastrear latência de endpoints, enviando alertas em SLA violado",
+          "TI: Cria playbook Ansible que instala e configura node_exporter em hosts, populando Grafana com painel de latência de rede",
+          "TI: Criar dashboard Grafana que monitora consumo de dados de cada SIM card via API da operadora, com alerta de 80% do limite"
+        ]
+      },
+      {
+        summary: "Identifica padrões de falha e pontos de monitoramento críticos, estende automação de alertas, reduz MTTR e orienta colegas.",
+        signals: [
+          "Introduz tracing distribuído para rastreamento de requests end-to-end",
+          "Cria runbooks de investigação automática e executa drills de incidentes",
+          "Revê e refina alerts, evitando falsos positivos e alert fatigue"
+        ],
+        examples: [
+          "HW/FW: Desenha e implementa um sistema de registro circular de eventos críticos em memória flash externa, com exportação automatizada via USB para ferramenta de análise pós-campo",
+          "Software: Implementa OpenTelemetry para rastrear transações entre microserviços, visualizando no Jaeger",
+          "TI: Constrói playbook que simula falha de disco e verifica resposta automática de failover, gerando relatório de SLA",
+          "TI: Automatizar coleta diária de métricas de consumo e status de SIM cards (uso, roaming) e gerar alerta via Slack em anomalias"
+        ]
+      },
+      {
+        summary: "Define frameworks, ferramentas e processos de debugging e monitoring corporativos; é mentor e referência global na organização.",
+        signals: [
+          "Padrões de observabilidade “as code” são criados e evangelizados internamente",
+          "Lidera comunidade técnica interna em práticas de SRE e resposta a incidentes",
+          "Publica whitepapers e conduz treinamentos sobre monitoramento avançado e debugging de sistemas complexos"
+        ],
+        examples: [
+          "HW/FW: Desenvolve framework de telemetria sobre LoRa e satélite, incluindo scripts de ingestão e visualização multi-regional",
+          "Software: Cria plataforma interna baseada em Grafana Loki e Tempo, unificando logs e traces em um único painel",
+          "TI: Projeta e implementa sistema de self-healing em Kubernetes, integrando Prometheus, Alertmanager e scripts de recuperação",
+          "TI: Desenvolver sistema de telemetria centralizado que correlaciona logs de modems satélite e celulares, exibindo estatísticas em dashboard HMI e acionando failover automático"
+        ]
+      }
+    ]
+  },
+  "UNDERSTANDING_CODE": {
+    displayName: "Compreensão de Código",
+    category: "A",
+    description: "Compreende rapidamente bases de código ou projetos existentes: navega em repositórios, interpreta fluxos de dados e controla efeitos colaterais antes de propor mudanças ou correções.",
+    milestones: [
+      {
+        summary: "Reconhece onde o código ou configuração está, mas depende de documentação externa e orientação para entender o fluxo.",
+        signals: [
+          "Segue links de comentários e README para localizar funções ou módulos",
+          "Precisa que colegas expliquem parte do fluxo de execução",
+          "Não consegue traçar dependências sem ajuda"
+        ],
+        examples: [
+          "HW/FW: Localiza a inicialização I²C em um projeto ESP32 lendo README e linkando para o arquivo `i2c_driver.c`",
+          "Software: Usa busca de IDE para encontrar onde um endpoint REST é definido, mas não entende totalmente middleware aplicado",
+          "TI: Abre playbook Ansible e identifica tarefa de instalação de pacote, mas não descobre como roles se encaixam sem diagrama",
+          "TI: Localizar playbook Ansible que importa SIM cards, mas não identificar todas as variáveis usadas"
+        ]
+      },
+      {
+        summary: "Consegue navegar em múltiplos módulos de forma independente, mas ainda demora a conectar todos os pontos do fluxo.",
+        signals: [
+          "Explora imports/includes para seguir chamadas de função ou tarefas entre arquivos",
+          "Usa breakpoints e logging para entender o comportamento",
+          "Documenta descobertas em notas pessoais"
+        ],
+        examples: [
+          "HW/FW: Mapeia sequência de inicialização de periféricos (SPI, DMA) navegando nos arquivos `init.c` e `driver_spi.c`",
+          "Software: Percorre código JavaScript/TypeScript para rastrear fluxo de dados do front-end ao back-end, usando debugger do browser",
+          "TI: Analisa playbook Terraform para entender como módulos são referenciados e combinados em um deploy",
+          "TI: Navegar pelos scripts Python de provisão de modems e listar as chamadas à API da operadora"
+        ]
+      },
+      {
+        summary: "Entende rapidamente o propósito e as interdependências do código, identificando pontos de extensão ou refatoração.",
+        signals: [
+          "Resume a arquitetura de alto nível e descreve pontos críticos de falha",
+          "Identifica rapidamente funções-chave e seus contratos de entrada/saída",
+          "Atualiza ou corrige documentação existente com base no entendimento"
+        ],
+        examples: [
+          "HW/FW: Documenta o fluxo de dados de aquisição de sensor via I²C e identifica onde inserir tratamento de overflow",
+          "Software: Gera diagrama UML simplificado para um microserviço, incluindo controllers, serviços e repositórios",
+          "TI: Cria diagrama de dependências entre módulos Ansible e roles, destacando pontos de variáveis compartilhadas",
+          "TI: Documentar fluxo completo de integração entre Snipe-IT, ERP e API de SIM cards, incluindo diagrama de chamadas REST"
+        ]
+      },
+      {
+        summary: "Analisa e refatora partes do systema com conhecimento profundo, antecipando impactos e sugerindo melhorias.",
+        signals: [
+          "Propõe e justifica refatorações para desacoplar módulos complexos",
+          "Antecipates efeitos colaterais de mudanças em baixo nível no sistema como um todo",
+          "Mentora outros para entenderem o design existente"
+        ],
+        examples: [
+          "HW/FW: Refatora driver DMA para um modelo baseado em callbacks, reduzindo acoplamento e facilitando testes",
+          "Software: Extrai lógica de negócio de um controller monolítico, movendo para serviço dedicado e criando testes correspondentes",
+          "TI: Reestrutura repositório de IaC, separando módulos de rede, compute e storage em workspaces distintos",
+          "TI: Refatorar script de gestão de SIM cards em funções modulares e criar README detalhado de uso e dependências"
+        ]
+      },
+      {
+        summary: "Atua como referência, documentando padrões de navegação e auxiliando o time a entender e evoluir sistemas complexos sem documentação prévia.",
+        signals: [
+          "Cria e mantém “caminhos de leitura” (guided tours) do código nos repositórios",
+          "Lidera sessões de code walkthrough para esclarecer arquitetura e processos",
+          "Publica guias de boas práticas para documentação de projetos legados"
+        ],
+        examples: [
+          "HW/FW: Desenvolve ferramenta interna que gera documentação interativa (plantuml) a partir de comentários no código C/C++",
+          "Software: Implementa e mantém portal de documentação automática (e.g., Swagger + diagramas UML) para todos os microserviços",
+          "TI: Constrói site interno “mapa do repositório” para playbooks e módulos Ansible, com links navegáveis e exemplos de uso",
+          "TI: Desenvolver ferramenta interna que gera automaticamente documentação interativa do fluxo de integração de SIM cards a partir do código-fonte"
+        ]
+      }
+    ]
   },
 
-  "WEB_CLIENT": {
-    "displayName": "Web client",
-    "category": "A",
-    "description": "Develops expertise in web client technologies, such as HTML, CSS, and JavaScript",
-    "milestones": [{
-      "summary": "Works effectively within established web client architectures, following current best practices",
-      "signals": [
-        "Makes minor modifications to existing screens",
-        "Fixes simple design quality issues",
-        "Uses CSS appropriately, following style guide",
-      ],
-      "examples": [
-        "Implemented sticky footer on the post page",
-        "Hooked up the action to dismiss a post from a stream",
-        "Built PaymentHistory screen using ResponseScreen",
-      ],
-    }, {
-      "summary": "Develops new instances of existing architecture, or minor improvements to existing architecture",
-      "signals": [
-        "Makes sensible abstractions based on template and code patterns",
-        "Specs and builds interactive components independently",
-        "Prototypes simple new features quickly",
-      ],
-      "examples": [
-        "Built credit card input component",
-        "Created shared buttons template",
-        "Built modal system",
-      ],
-    }, {
-      "summary": "Designs major new features and demonstrates a nuanced understanding of browser constraints",
-      "signals": [
-        "Provides useful design feedback and suggests feasible alternatives",
-        "Performs systemic tasks to significantly minimise bundle size",
-        "Acts a caretaker for all of web client code",
-      ],
-      "examples": [
-        "Designed font loading strategy for Medium",
-        "Researched utility of service workers for Medium",
-        "Designed and implemented ResponseScreen",
-      ],
-    }, {
-      "summary": "Builds complex, reusable architectures that pioneer best practices and enable engineers to work more effectively",
-      "signals": [
-        "Pioneers architecture migrations that reduce programmer burden",
-        "Implements complex UI transitions that bring delight",
-        "Makes architectural decisions that eliminate entire classes of bugs",
-      ],
-      "examples": [
-        "Designed Medium's post morpher and delta system",
-        "Implemented Medium's scrolling text over image blur",
-        "Designed and pioneered proto-based model storage",
-      ],
-    }, {
-      "summary": "Is an industry-leading expert in web client or sets strategic web client direction for an eng team",
-      "signals": [
-        "Invents new techniques to innovate and overcome browser constraints",
-        "Identifies and solved systemic problems with current architecture",
-        "Defines a long-term vision for web client and ensures projects are in service of it",
-      ],
-      "examples": [
-        "Invented CSS in JS",
-        "Defined and drove migration strategy to Lite",
-        "Implemented unidirectional data flow to completion",
-      ],
-    }],
+  "SYSTEM_DESIGN": {
+    displayName: "Design de Sistema",
+    category: "A",
+    description: "Projeta soluções de alto nível cobrindo arquitetura de software (APIs, microsserviços), firmware/hardware (RTOS, power-management, SI/PI) ou infraestrutura (topologias de rede, redundância, escalabilidade).",
+    milestones: [
+      {
+        summary: "Segue modelos ou padrões existentes com mínima customização; define apenas o essencial.",
+        signals: [
+          "Replica um diagrama de referência sem questionar trade-offs",
+          "Define interfaces sem especificar requisitos de performance ou falha",
+          "Aceita configurações padrão sem avaliar implicações"
+        ],
+        examples: [
+          "HW/FW: Copia esquema de referência de placa Arduino, sem ajustar roteamento ou decoupling",
+          "Software: Cria estrutura de projeto Express/Maven usando o gerador padrão, sem modularizar pacotes",
+          "TI: Adota topologia de rede simples (flat network) baseada em guia de instalação sem personalização de VLANs",
+          "TI: Adotar topologia existente para armazenar dados de SIM cards em banco local, sem questionar performance"
+        ]
+      },
+      {
+        summary: "Conecta subsistemas de forma coerente, mas deixa lacunas em escalabilidade, tolerância a falhas ou performance.",
+        signals: [
+          "Define módulos com responsabilidades claras, mas não documenta limites de carga",
+          "Seleciona tecnologias adequadas, mas subestima custos operacionais",
+          "Entrega diagramas de sequência sem detalhes de retentativa ou timeout"
+        ],
+        examples: [
+          "HW/FW: Desenha bloco de alimentação e lógica digital no esquemático, mas não calcula tolerâncias de EMI",
+          "Software: Esboça diagrama de microserviços com APIs REST, mas não especifica SLA ou caching",
+          "TI: Planeja rede com sub-redes para DMZ e LAN, porém sem plano de failover para roteadores",
+          "TI: Propor tabela de banco de dados para estoque de SIM cards, mas sem considerar crescimento anual"
+        ]
+      },
+      {
+        summary: "Projeta arquiteturas completas, prevendo requisitos de performance, falhas e escala; documenta trade-offs.",
+        signals: [
+          "Realiza análise de carga e define limites de rate-limiting",
+          "Inclui planos de fallback e monitoração no design",
+          "Produz documentação clara com diagramas C4 ou UML"
+        ],
+        examples: [
+          "HW/FW: Arquitetura de placa com separação de domínio analógico/digital, roteamento de alta-velocidade e ESD protection",
+          "Software: Desenha arquitetura de eventos com Kafka ou RabbitMQ, definindo particionamento e garantias de entrega",
+          "TI: Elabora desenho de infraestrutura em múltiplas AZs, com load balancers, VPNs redundantes e health checks",
+          "TI: Desenhar arquitetura que integra Snipe-IT, ERP e dashboard Grafana para gestão de SIM cards com failover manual"
+        ]
+      },
+      {
+        summary: "Identifica pontos críticos de evolução e define padrões para modularidade, extensibilidade e segurança.",
+        signals: [
+          "Propõe padrões de API (versioning, HATEOAS) ou de firmware (HAL, drivers plugáveis)",
+          "Antecipates necessidades de integração futura e facilita onboarding de novos módulos",
+          "Lidera revisões de arquitetura para garantir compliance e melhores práticas"
+        ],
+        examples: [
+          "HW/FW: Define plataforma de hardware genérica com footprint configurável para múltiplos sensores e atuadores",
+          "Software: Cria blueprint de arquitetura serverless para microserviços, incluindo pipelines CI/CD e IaC",
+          "TI: Desenvolve framework Terraform/Ansible com módulos reutilizáveis para workloads variadas, incluindo políticas de segurança",
+          "TI: Projetar solução de alta disponibilidade para API de gestão de SIM cards, com balanceador e replicação de dados"
+        ]
+      },
+      {
+        summary: "Cria frameworks e diretrizes de arquitetura corporativa, alinhando tecnologia a objetivos de negócio e mercado.",
+        signals: [
+          "Define e evangeliza referência arquitetural (TOGAF, DDD) em toda a organização",
+          "Conduz workshops interdisciplinares para alinhar hardware, software e operações",
+          "Publica guias de governança e revisa roadmaps de produto/infraestrutura em nível executivo"
+        ],
+        examples: [
+          "HW/FW: Lança plataforma de hardware modulável, com specification-driven design e pipelines de validação automatizada",
+          "Software: Publica e mantém repositório de “architectural patterns” compartilhados (monolito modular, event‐driven, CQRS)",
+          "TI: Implementa e promove malha de serviços (service mesh) com políticas de segurança e observabilidade unificadas",
+          "TI: Definir plataforma corporativa de conectividade M2M, integrando SIM cards, modems satélite e celular, com orquestração de failover e billing consolidado"
+        ]
+      }
+    ]
   },
-
-  "FOUNDATIONS": {
-    "displayName": "Foundations",
-    "category": "A",
-    "description": "Develops expertise in foundational systems, such as deployments, pipelines, databases and machine learning",
-    "milestones": [{
-      "summary": "Works effectively within established structures, following current best practices",
-      "signals": [
-        "Writes thorough postmortems for service outages",
-        "Makes simple configuration changes to services",
-        "Performs backfills safely and effectively, without causing pages",
-      ],
-      "examples": [
-        "Made safe and effective Ansible changes",
-        "Implemented new ETL pipelines based on existing ones",
-        "Resolved out of disk errors independently",
-      ],
-    }, {
-      "summary": "Develops new instances of existing architecture, or minor improvements to existing architecture",
-      "signals": [
-        "Made minor version upgrades to technologies",
-        "Builds machine learning jobs within the ML framework",
-        "Triages service issues correctly and independently",
-      ],
-      "examples": [
-        "Upgraded NodeJS from 8.0 to 8.1.1",
-        "Built custom packages for RPMs",
-        "Improved ETL efficiency by improving Dynamo to S3 loading",
-      ],
-    }, {
-      "summary": "Designs standalone systems of moderate complexity, or major new features in existing systems",
-      "signals": [
-        "Acts as primary maintainer for existing critical systems",
-        "Designs moderately complex systems",
-        "Makes major version upgrades to libraries",
-      ],
-      "examples": [
-        "Designed Ansible configuration management",
-        "Built Medium's realtime stats pipeline",
-        "Designed flexible framework for writing machine learning jobs",
-      ],
-    }, {
-      "summary": "Builds complex, reusable architectures that pioneer best practices for other engineers, or multi-system services",
-      "signals": [
-        "Designs complex projects that encompass multiple systems and technologies",
-        "Demonstrates deep knowledge of foundational systems",
-        "Introduces new databases and technologies to meet underserved needs",
-      ],
-      "examples": [
-        "Designed and built BBFD",
-        "Designed AWS configuration management",
-        "Introduced Kinesis and pioneered streaming events pipeline",
-      ],
-    }, {
-      "summary": "Is an industry-leading expert in foundational engineering or sets strategic foundational direction for an eng team",
-      "signals": [
-        "Designs transformational projects in service of long-term goals",
-        "Defines the strategic vision for foundational work and supporting technologies",
-        "Invents industry-leading techniques to solve complex problems",
-      ],
-      "examples": [
-        "Invented a novel ML technique that advanced the state of the art",
-        "Defined and developed Medium's continuous delivery strategy",
-        "Developed and implemented HA strategy",
-      ],
-    }],
-  },
-
-  "SERVERS": {
-    "displayName": "Servers",
-    "category": "A",
-    "description": "Develops expertise in server side engineering, using technologies such as Go, NodeJS, or Scala",
-    "milestones": [{
-      "summary": "Works effectively within established server side frameworks, following current best practices",
-      "signals": [
-        "Adds NodeJS endpoints using layers architecture",
-        "Adds golang endpoints using Gotham architecture",
-        "Makes minor server changes to support client needs",
-      ],
-      "examples": [
-        "Added IFTTT trigger for new bookmark to medium2",
-        "Added delete audio route to Buggle",
-        "Queried a Dynamo LSI appropriately",
-      ],
-    }, {
-      "summary": "Develops new instances of existing architecture, or minor improvements to existing architecture",
-      "signals": [
-        "Assesses correctness and utility of existing code and avoids blind copy-pasting",
-        "Generalizes code when appropriate",
-        "Determines data needs from product requirements",
-      ],
-      "examples": [
-        "Identified need for new index on Dynamo",
-        "Acted as caretaker for routes protos",
-        "Updated Facebook API version and codebase dependencies",
-      ],
-    }, {
-      "summary": "Designs standalone systems of moderate complexity, or major new features in existing systems",
-      "signals": [
-        "Acts as primary maintainer for existing critical systems",
-        "Integrates third party services effectively",
-        "Writes playbooks for new service maintenance",
-      ],
-      "examples": [
-        "Implemented Google Auth login to Medium",
-        "Implemented payments integration with Stripe",
-        "Built Textshots server",
-      ],
-    }, {
-      "summary": "Builds complex, reusable architectures that pioneer best practices for other engineers, or multi-system services",
-      "signals": [
-        "Delivers complex systems that achieve their goals",
-        "Avoids subtle architectural mistakes when considering new systems",
-        "Makes appropriate buy vs build choices",
-      ],
-      "examples": [
-        "Designed Medium's ranked feed architecture",
-        "Designed custom domains architecture",
-        "Created Gotham framework for creating Go services",
-      ],
-    }, {
-      "summary": "Is an industry-leading expert in server side engineering or sets strategic server side direction for an eng team",
-      "signals": [
-        "Designs transformational projects of significant complexity and scope",
-        "Makes decisions that have positive, long term, wide ranging consequences",
-        "Identifies and solves systemic problems with current architecture",
-      ],
-      "examples": [
-        "Researched, vetted, and selected Go as Medium's statically typed language",
-        "Defined microservices architecture and medium2 migration plan",
-        "Defined and implemented proprietary IP core to the company's success",
-      ],
-    }],
-  },
-
   "PROJECT_MANAGEMENT": {
-    "displayName": "Project management",
-    "category": "B",
-    "description": "Delivers well-scoped programs of work that meet their goals, on time, to budget, harmoniously",
-    "milestones": [{
-      "summary": "Effectively delivers individual tasks",
-      "signals": [
-        "Estimates small tasks accurately",
-        "Delivers tightly-scoped projects efficiently",
-        "Writes effective technical specs outlining approach",
-      ],
-      "examples": [
-        "Wrote the technical spec for featured post images",
-        "Delivered stream item support for email digests",
-        "Delivered payment history dashboard",
-      ],
-    }, {
-      "summary": "Effectively delivers small personal projects",
-      "signals": [
-        "Performs research and considers alternative approaches",
-        "Balances pragmatism and polish appropriately",
-        "Defines and hits interim milestones",
-      ],
-      "examples": [
-        "Delivered promo editor",
-        "Delivered audio uploading for web client",
-        "Executed the recommends to claps backfill",
-      ],
-    }, {
-      "summary": "Effectively delivers projects through a small team",
-      "signals": [
-        "Delegates tasks to others appropriately",
-        "Integrates business needs into project planning",
-        "Chooses appropriate project management strategy based on context",
-      ],
-      "examples": [
-        "Ran project retro to assess improvement opportunities",
-        "Completed launch checklist unprompted for well controlled rollout",
-        "Facilitated project kickoff meeting to get buy-in",
-      ],
-    }, {
-      "summary": "Effectively delivers projects through a large team, or with a significant amount of stakeholders or complexity",
-      "signals": [
-        "Finds ways to deliver requested scope faster, and prioritizes backlog",
-        "Manages dependencies on other projects and teams",
-        "Leverages recognition of repeated project patterns",
-      ],
-      "examples": [
-        "Oversaw technical delivery of Hightower",
-        "Managed infrastructure migration to VPC",
-        "Involved marketing, legal, and appropriate functions at project start",
-      ],
-    }, {
-      "summary": "Manages major company pushes delivered by multiple teams",
-      "signals": [
-        "Considers external constraints and business objectives when planning",
-        "Leads teams of teams, and coordinates effective cross-functional collaboration",
-        "Owns a key company metric",
-      ],
-      "examples": [
-        "Managed technical migration to SOA",
-        "Lead technical delivery of 10/7",
-        "Delivered multi-month engineering project on time",
-      ],
-    }],
+    displayName: "Gestão de Projetos",
+    category: "B",
+    description: "Planeja tarefas, define marcos e gerencia riscos. Utiliza metodologias (Ágil, Waterfall), mantém backlog atualizado, faz estimativas realistas e acompanha progresso até a entrega.",
+    milestones: [
+      {
+        summary: "Segue cronogramas predefinidos com pouca adaptação; não antecipa riscos ou dependências.",
+        signals: [
+          "Atualiza cronograma apenas reproduzindo datas passadas",
+          "Expõe progresso somente quando solicitado",
+          "Não documenta riscos nem planos de contingência"
+        ],
+        examples: [
+          "HW/FW: Preenche planilha com datas de entrega de PCBs conforme cronograma inicial, sem revisar prazos de fabricação",
+          "Software: Cria/Atualiza um board no Jira com tarefas e deadlines copiados de um template, sem estimar esforço real",
+          "TI: Agenda manutenção de servidores em horário fixo, sem validar janela de downtime com stakeholders",
+          "TI: Anotar prazos de entrega de SIM cards em planilha conforme instruções"
+        ]
+      },
+      {
+        summary: "Estima prazos com base em experiência; revisa plano quando surgem imprevistos, mas requer supervisão.",
+        signals: [
+          "Reavalia estimativas após pequenos atrasos",
+          "Comunica bloqueadores em reuniões diárias",
+          "Registra riscos em documento, mas não os prioriza"
+        ],
+        examples: [
+          "HW/FW: Ajusta datas de projeto de firmware após atraso na entrega de componentes, comunicando equipe e fornecedor",
+          "Software: Reestima tarefas de sprint em planning ao detectar dependências ocultas em bibliotecas externas",
+          "TI: Atualiza calendário de migração de rede quando descobre conflito com outro time, mas sem propor novo plano de backup",
+          "TI: Criar board no Jira para rastrear pedidos de novos SIM cards, mas sem estimar tempo de aprovação"
+        ]
+      },
+      {
+        summary: "Identifica riscos e dependências antecipadamente; mantém stakeholders informados e entrega dentro do prazo.",
+        signals: [
+          "Realiza reuniões de risco e mantém risk register atualizado",
+          "Priorização clara dos entregáveis com base em valor de negócio",
+          "Garante que toda a equipe tenha visibilidade de marcos e blockers"
+        ],
+        examples: [
+          "HW/FW: Coordena fornecedores e equipe de montagem, mapeando lead times e mitigando risco de atraso de PCBs",
+          "Software: Define milestones e checkpoints no GitLab, acionando demonstrações regulares para product owner",
+          "TI: Cria runbook para migração de datacenter, incluindo fallback plan e comunicação prévia a todos os times",
+          "TI: Planejar rollout de sistema de gestão de SIM cards, definindo milestones de inventário, integração e testes"
+        ]
+      },
+      {
+        summary: "Conduz projetos multifuncionais complexos, antecipando impactos e garantindo sinergia entre áreas.",
+        signals: [
+          "Facilita alinhamento entre hardware, firmware, software e operações",
+          "Gerencia múltiplos streams de trabalho com OKRs claros",
+          "Usa métricas de performance de projeto (burn-down, CPI, SPI) para ajustes dinâmicos"
+        ],
+        examples: [
+          "HW/FW: Lidera desenvolvimento de plataforma IoT de ponta a ponta, integrando design de PCB, firmware e testes de campo em paralelo",
+          "Software: Orquestra desenvolvimento de suíte de microserviços, coordenando dependências e versionamento de APIs",
+          "TI: Gerencia rollout global de nova infraestrutura em nuvem, sincronizando equipes regionais e operações 24×7",
+          "TI: Coordenar simultaneamente a implantação de playbooks Ansible, scripts Python e dashboards Grafana para SIM cards, monitorando riscos"
+        ]
+      },
+      {
+        summary: "Define a estratégia de portfólio de projetos; estabelece processos corporativos e mentora gerentes de projeto.",
+        signals: [
+          "Cria e evangeliza metodologia de entrega (ex.: SAFE, Prince2 adaptado)",
+          "Monitora KPIs de portfólio (ROI, NPV, RONA) para decisões de continuidade ou pivot",
+          "Mentora colegas em gestão de programas e governança"
+        ],
+        examples: [
+          "HW/FW: Implanta governance board para pipeline de hardware, padronizando processos de aprovação e QA",
+          "Software: Define framework de gestão de produtos e programas, alinhado ao roadmap estratégico da empresa",
+          "TI: Estabelece PMO para iniciativas de infraestrutura, consolidando relatórios e benchmarks de desempenho",
+          "TI: Liderar programa de transformação de gestão de conectividade, alinhando cronograma, orçamento e metas de redução de custos globais"
+        ]
+      }
+    ]
+  },
+  "PRIORITISATION_DEPENDENCIES": {
+    displayName: "Priorização & Dependências",
+    category: "B",
+    description: "Avalia impacto de requisitos e dependências técnicas/negócio. Organiza backlog de forma que itens críticos sejam endereçados primeiro e gargalos sejam eliminados.",
+    milestones: [
+      {
+        summary: "Executa tarefas na ordem que chegam, sem avaliar prioridade ou dependências.",
+        signals: [
+          "Pega a próxima tarefa sem verificar bloqueios prévios",
+          "Não considera impacto de atrasos em componentes externos ou APIs",
+          "Nunca revisa ou ajusta o backlog"
+        ],
+        examples: [
+          "HW/FW: Inicia desenvolvimento de driver antes de receber o esquemático final da placa",
+          "Software: Começa a codificar um novo endpoint sem checar se o banco de dados está migrado",
+          "TI: Aplica patch em servidor sem verificar dependências de rede",
+          "TI: Atender primeiros pedidos de SIM cards sem mapear estoque ou faturamento"
+        ]
+      },
+      {
+        summary: "Reconhece algumas dependências, mas requer confirmação para priorizar adequadamente.",
+        signals: [
+          "Pergunta ao PO se tarefa X deve preceder Y, sem investigação própria",
+          "Atualiza backlog quando orientado, sem análise de impacto detalhada",
+          "Resolve bloqueios conhecidos, mas perde novas dependências"
+        ],
+        examples: [
+          "HW/FW: Aguarda entrega de componentes para layout, mas esquece dependência de firmware",
+          "Software: Solicita configuração de feature flag antes de desenvolver sem revisar integrações",
+          "TI: Verifica ordem de playbooks sem ajustar sequência após falha de role",
+          "TI: Perguntar ao gestor qual pedido de SIM atender antes de mapear dependências"
+        ]
+      },
+      {
+        summary: "Mapeia e prioriza dependências de forma autônoma, garantindo que entregas fluam sem bloqueios.",
+        signals: [
+          "Cria diagrama ou lista de dependências antes de estimar esforço",
+          "Reprioriza backlog quando dependência crítica atrasa",
+          "Comunica stakeholders sobre mudanças de prioridade"
+        ],
+        examples: [
+          "HW/FW: Documenta sequência de design de PCB e firmware, ajustando cronograma conforme lead times",
+          "Software: Define order de migrations e microserviços, criando tickets de dependência de banco",
+          "TI: Planeja rollout de patches respeitando dependências de rede, storage e serviços",
+          "TI: Mapear dependências entre modems em uso, estoque de SIM cards e faturas pendentes"
+        ]
+      },
+      {
+        summary: "Identifica dependências ocultas, reordenando iniciativas para reduzir riscos e maximizar throughput.",
+        signals: [
+          "Antecipates cross-team blockers e reajusta prioridades proativamente",
+          "Automatiza verificação de dependências via scripts ou ferramentas",
+          "Colabora com PM e Tech Leads para realinhar roadmap"
+        ],
+        examples: [
+          "HW/FW: Cria script que valida versão de bootloader e hardware antes de cada build",
+          "Software: Implementa ferramenta de análise de dependências de pacotes e bloqueia versões inseguras",
+          "TI: Desenvolve dashboard de dependências de rede e servidores, sugerindo ordem de manutenção",
+          "TI: Automatizar verificação de compatibilidade de plano de SIM card e firmware do modem antes de aprovar ordens"
+        ]
+      },
+      {
+        summary: "Define frameworks e políticas de priorização para toda a organização, alinhando dependências a objetivos de negócio.",
+        signals: [
+          "Constrói matriz de valor vs. esforço que embasa decisões de roadmap",
+          "Treina equipes para identificar e documentar dependências sistematicamente",
+          "Ajusta processos de governança para incluir análise de dependências em todas as fases"
+        ],
+        examples: [
+          "HW/FW: Estabelece pipeline que valida automaticamente se layout de PCB corresponde à versão de firmware",
+          "Software: Dissemina guideline de versionamento semântico e monorepo tooling para evitar conflitos",
+          "TI: Define policy de change management exigindo matriz de dependências antes de deploy",
+          "TI: Definir política corporativa de priorização de pedidos de SIM cards baseada em métricas de uso, SLA e custo-benefício"
+        ]
+      }
+    ]
+  },
+  "ADAPTABILITY_CHANGE": {
+    displayName: "Adaptabilidade & Mudança",
+    category: "B",
+    description: "Reage bem a mudanças de escopo, requisitos ambíguos ou novas prioridades. Replaneja rapidamente, incorpora feedback e mantém a equipe alinhada em ambientes de incerteza.",
+    milestones: [
+      {
+        summary: "Demonstra dificuldade em aceitar novas diretrizes; precisa de muita orientação para ajustar prioridades.",
+        signals: [
+          "Insiste em seguir o plano original mesmo diante de evidências de mudança",
+          "Solicita instruções detalhadas para alterar scripts ou código",
+          "Evita tecnologias ou processos novos"
+        ],
+        examples: [
+          "HW/FW: Mantém firmware antigo sem adaptar drivers para novo sensor entregue",
+          "Software: Recusa-se a migrar de framework legado, atrasando integrações",
+          "TI: Continua usando playbooks antigos após atualização de infraestrutura, gerando falhas",
+          "TI: Relutar em adotar novo layout de formulário de pedido de SIM card"
+        ]
+      },
+      {
+        summary: "Ajusta-se a mudanças conhecidas, mas requer confirmação e direção para lidar com imprevistos.",
+        signals: [
+          "Replaneja tarefas quando comandado, sem antecipar impactos colaterais",
+          "Adota novas ferramentas apenas após tutorial ou exemplo pronto",
+          "Precisa de revisão ao alterar processos"
+        ],
+        examples: [
+          "HW/FW: Atualiza build system para novo compilador sob supervisão, mas esquece flags de otimização",
+          "Software: Refatora um endpoint para nova versão de API externa seguindo guia de migração",
+          "TI: Adapta playbook Ansible para novo container runtime, mas ignora configuração de network namespace",
+          "TI: Ajustar planilha de inventário conforme novo requisito, mas sem revisar consistência dos dados"
+        ]
+      },
+      {
+        summary: "Lida bem com escopo dinâmico; reorganiza prioridades e aprende novas ferramentas conforme necessário.",
+        signals: [
+          "Avalia impacto de mudanças e comunica plano de ação rapidamente",
+          "Testa novas bibliotecas ou processos em sandbox antes de aplicar em produção",
+          "Mantém equipe informada sobre ajustes de rota"
+        ],
+        examples: [
+          "HW/FW: Migra firmware de Arduino para ESP32, validando funcionalidades e ajustando configurações de pinout",
+          "Software: Converte projeto de build Make para CMake, garantindo compatibilidade de múltiplas plataformas",
+          "TI: Atualiza playbooks para suportar Kubernetes 1.24 e testa rollback automático em staging",
+          "TI: Migrar playbook Ansible de importação de SIM cards para nova versão de API de operadora sem interromper produção"
+        ]
+      },
+      {
+        summary: "Antecipates mudanças de tecnologia e processos, propondo e liderando migrações ou evoluções antes de se tornarem urgentes.",
+        signals: [
+          "Monitora tendências e recomenda adoção de novas arquiteturas ou padrões",
+          "Conduz PoCs para avaliar viabilidade de ferramentas emergentes",
+          "Treina colegas nos novos métodos de trabalho"
+        ],
+        examples: [
+          "HW/FW: Projeta e implementa PoC de firmware em Zephyr RTOS para substituir FreeRTOS, apresentando resultados de performance",
+          "Software: Conduz migração de monolito para arquitetura de micro front-ends com module federation",
+          "TI: Planeja e executa rollout de GitOps para gerenciar infraestrutura em múltiplos clusters Kubernetes",
+          "TI: Conduzir PoC de integração com novo fornecedor de SIM cards em paralelo ao sistema existente, validando em staging"
+        ]
+      },
+      {
+        summary: "Define frameworks de gestão de mudanças e lidera iniciativas de transformação cultural e tecnológica em toda a organização.",
+        signals: [
+          "Estabelece processos de change management integrados ao ciclo de vida de desenvolvimento",
+          "Evangeliza cultura de experimentação e iteratividade",
+          "Mentora líderes para gerir mudanças em larga escala"
+        ],
+        examples: [
+          "HW/FW: Cria governance board para validação de novas plataformas hardware, definindo critérios de adoção e planos de capacitação",
+          "Software: Implementa e documenta processo de Feature Toggles e Canary Releases em todos os serviços críticos",
+          "TI: Desenvolve e treina equipes no framework ITIL 4 adaptado à realidade DevOps da empresa",
+          "TI: Liderar mudança de plataforma de gestão de conectividade (SaaS para on-premise), gerenciando stakeholders e mitigando riscos"
+        ]
+      }
+    ]
+  },
+  "RELIABILITY_ACCOUNTABILITY": {
+    displayName: "Confiabilidade & Responsabilidade",
+    category: "B",
+    description: "Entrega com consistência, cumpre prazos e assume responsabilidade pelos resultados. Comunica riscos antecipadamente e implementa planos de contingência quando necessário.",
+    milestones: [
+      {
+        summary: "Entrega apenas o que foi solicitado, frequentemente atrasado, e raramente assume responsabilidade por falhas.",
+        signals: [
+          "Atrasos não são comunicados até o prazo já ter expirado",
+          "Rejeita a ideia de assumir correções pós-entrega",
+          "Evita reportar problemas, esperando que outros percebam"
+        ],
+        examples: [
+          "HW/FW: Entrega firmware de leitura de sensor fora do prazo acordado sem aviso prévio",
+          "Software: Finaliza feature no repositório sem executar testes finais e ignora falhas de build",
+          "TI: Executa manutenção de servidor sem comunicar janela de downtime e falha em restaurar serviço rapidamente",
+          "TI: Executar inventário de SIM cards uma vez por mês manualmente, sem checar discrepâncias"
+        ]
+      },
+      {
+        summary: "Cumpre a maior parte das tarefas dentro do prazo, mas requer lembretes; assume responsabilidade apenas quando solicitado.",
+        signals: [
+          "Notifica atrasos somente após ser questionado",
+          "Assume correções quando apontado, mas não se antecipa",
+          "Documenta incidentes apenas para fechar tickets"
+        ],
+        examples: [
+          "HW/FW: Ajusta cronograma de testes de bancada após ser notificado de conflito de agenda",
+          "Software: Corrige bug em produção depois de alerta de monitoramento, mas não implementa rollback automático",
+          "TI: Restaura host com backup após incidente, mas não analisa causa raiz nem previne recorrências",
+          "TI: Notificar divergências de estoque apenas após auditoria anual"
+        ]
+      },
+      {
+        summary: "Entrega consistentemente dentro do prazo, comunica riscos e assume a resolução de problemas proativamente.",
+        signals: [
+          "Informa stakeholders sobre possíveis atrasos com antecedência",
+          "Monitora health checks e reage a alertas automaticamente",
+          "Documenta causas raízes e compartilha lições aprendidas"
+        ],
+        examples: [
+          "HW/FW: Agenda testes de campo com margem para retrabalho e informa equipe quando ocorrem desvios",
+          "Software: Configura pipeline para reverter automaticamente deploy com falha e envia relatório ao time",
+          "TI: Recebe alerta de disco cheio, adiciona espaço e notifica o time antes que impacte serviços",
+          "TI: Implementar script de auditoria semanal que compara estoque físico x sistema e gera tickets em Jira"
+        ]
+      },
+      {
+        summary: "Implementa melhorias de processo e automações que elevam o nível de confiabilidade além do esperado.",
+        signals: [
+          "Identifica potenciais pontos de falha e propõe alertas ou redundâncias",
+          "Define SLAs e SLOs claros para componentes críticos",
+          "Orient a colegas a seguir padrões de confiabilidade"
+        ],
+        examples: [
+          "HW/FW: Automatiza testes de regressão de firmware e valida bootloader em cada commit, reduzindo falhas em campo",
+          "Software: Implementa circuit breaker e retry com backoff em chamadas externas, monitorando métricas de sucesso",
+          "TI: Cria processo automatizado de failover de banco de dados e testa a recuperação sem intervenção manual",
+          "TI: Automatizar reconciliação diária de consumo de dados e inventário de SIM cards, abrindo chamados junto ao fornecedor em caso de anomalias"
+        ]
+      },
+      {
+        summary: "Estabelece políticas de confiabilidade corporativa e é referência em accountability, elevando padrões organizacionais.",
+        signals: [
+          "Cria e evangeliza cultura de blameless post-mortems e melhoria contínua",
+          "Define métricas de confiabilidade corporativas (e.g., uptime, MTTR) e conduz acompanhamento executivo",
+          "Mentora outras equipes na implementação de práticas de responsabilidade"
+        ],
+        examples: [
+          "HW/FW: Lança programa de certificação interna de qualidade de firmware, incluindo auditorias periódicas",
+          "Software: Publica guideline de SRE com regras de escalabilidade, monitoramento e runbooks de incidentes",
+          "TI: Estabelece processo de change review board, garantindo que todas as mudanças passem por análise de risco e rollback plan",
+          "TI: Definir e implantar política corporativa de auditoria contínua de ativos móveis, com dashboards de compliance e relatórios executivos"
+        ]
+      }
+    ]
+  },
+  "COMMUNICATION_SHARING": {
+    displayName: "Comunicação & Compartilhamento",
+    category: "C",
+    description: "Comunica ideias de forma clara (oral, escrita, apresentações) e compartilha conhecimento: documenta processos, conduz workshops e faz pair-programming.",
+    milestones: [
+      {
+        summary: "Comunica apenas o mínimo necessário; raramente documenta ou compartilha aprendizados.",
+        signals: [
+          "Responde mensagens apenas quando diretamente solicitado",
+          "Usa linguagem técnica sem adaptar ao público",
+          "Não registra decisões ou passos importantes"
+        ],
+        examples: [
+          "HW/FW: Envia e-mail informando “sensor calibrado” sem detalhar parâmetros usados",
+          "Software: Adiciona um comentário genérico no código (“TODO: handle error”) sem contexto",
+          "TI: Executa alteração em servidor e não atualiza o ticket com detalhes da mudança",
+          "TI: Informar via e-mail genérico “Novo SIM adicionado” ao time"
+        ]
+      },
+      {
+        summary: "Fornece atualizações de status regulares, mas faltam detalhes ou formatação clara.",
+        signals: [
+          "Participa de reuniões diárias, mas não documenta decisões",
+          "Compartilha snippets de código ou diagramas sem explicação completa",
+          "Envia links sem sumário do conteúdo"
+        ],
+        examples: [
+          "HW/FW: Publica no canal Teams “firmware build concluído” anexando binário, mas sem log de testes",
+          "Software: Comenta PR com “funciona aqui” sem detalhar o cenário testado",
+          "TI: Atualiza ticket dizendo “servidor rebootado” sem registrar motivo ou resultado de health-check",
+          "TI: Publicar no Confluence procedimento de pedido de SIM cards sem exemplos visuais"
+        ]
+      },
+      {
+        summary: "Comunica-se de forma clara, documenta decisões e compartilha conhecimento relevante.",
+        signals: [
+          "Escreve resumos de reunião com ações e responsáveis",
+          "Produz README ou wiki com instruções de uso",
+          "Faz pair-programming e revisões de código abertos"
+        ],
+        examples: [
+          "HW/FW: Documenta o fluxo de calibração I²C, com fotos de sinal e parâmetros",
+          "Software: Cria guia de estilo Markdown para o repositório, incluindo exemplos de chamadas de API",
+          "TI: Publica playbook Ansible com comentários explicando cada etapa do provisionamento",
+          "TI: Criar guia ilustrado no Confluence com fluxo de aprovação, screenshots e link para formulário de requisição"
+        ]
+      },
+      {
+        summary: "Proativamente compartilha insights, cria templates e conduz treinamentos internos.",
+        signals: [
+          "Organiza workshop “Como usar o analisador lógico” para colegas de hardware",
+          "Escreve blog interno explicando pattern arquitetural adotado",
+          "Ajuda novos membros a se situarem no código e no processo"
+        ],
+        examples: [
+          "HW/FW: Desenvolve template de relatório de testes HIL e treina a equipe em como preenchê-lo",
+          "Software: Cria gerador de documentação automática (Swagger) e treina devs no uso",
+          "TI: Constrói repositório de scripts reutilizáveis para manutenção e faz live-coding para o time",
+          "TI: Conduzir webinar interno sobre o processo de gestão de SIM cards, gravando vídeo e Q&A"
+        ]
+      },
+      {
+        summary: "Define políticas e padrões de comunicação corporativa; inspira a cultura de compartilhamento e transparência.",
+        signals: [
+          "Padrões de documentação “as code” são implementados em todos os projetos",
+          "Lidera série de Tech Talks ou “lunch & learn” regulares",
+          "Mentora outros na arte da comunicação técnica"
+        ],
+        examples: [
+          "HW/FW: Publica guia de “best practices” para documentação de hardware e firmware, integrado ao pipeline CI para validar templates",
+          "Software: Implanta portal interno de conhecimento com auto-deploy de docs e versionamento",
+          "TI: Estabelece política de “Docs as Code” para playbooks e scripts, integrando revisão por pares antes de qualquer merge",
+          "TI: Desenvolver portal self-service com vídeos, FAQs e chatbot para solicitação e dúvidas sobre SIM cards e infraestrutura"
+        ]
+      }
+    ]
+  },
+  "TEAMWORK_RELATIONSHIPS": {
+    displayName: "Trabalho em Equipe & Relacionamentos",
+    category: "C",
+    description: "Constrói confiança e boas relações no time: colabora em tarefas conjuntas, apoia colegas e mantém um ambiente de trabalho respeitoso e colaborativo.",
+    milestones: [
+      {
+        summary: "Interage apenas quando solicitado; mantém fronteiras claras, porém sem engajamento ativo.",
+        signals: [
+          "Responde a convites de reunião mas não contribui com ideias",
+          "Evita discussões de grupo e trabalha isoladamente",
+          "Não procura entender ou apoiar desafios dos colegas"
+        ],
+        examples: [
+          "HW/FW: Completa sua parte de design de PCB, mas não participa da revisão de esquemáticos dos colegas",
+          "Software: Abre PR apenas quando concluído, sem comentar ou revisar PRs dos demais",
+          "TI: Executa ticket de suporte individualmente, sem oferecer ajuda ao próximo turno",
+          "TI: Responder isoladamente tickets de SIM cards sem envolver outras áreas"
+        ]
+      },
+      {
+        summary: "Contribui de forma pontual em tarefas de equipe, mas não assume responsabilidades de facilitador.",
+        signals: [
+          "Oferece ajuda quando diretamente solicitado",
+          "Compartilha recursos ou links úteis, mas não coordena esforços",
+          "Participa de discussões, mas sem assumir papéis de liderança"
+        ],
+        examples: [
+          "HW/FW: Ajuda colega a configurar ferramenta de depuração quando perguntado, mas não documenta o processo",
+          "Software: Comenta em PR de outro desenvolvedor apontando um bug simples, mas não propõe solução",
+          "TI: Dá suporte em reunião de shift handover, mas não identifica melhorias no processo",
+          "TI: Ajudar colega em chamado de modem satélite quando perguntado"
+        ]
+      },
+      {
+        summary: "Engaja-se proativamente em atividades de equipe, divide responsabilidades e fortalece a confiança mútua.",
+        signals: [
+          "Oferece revisão de código/esquemático voluntariamente",
+          "Solicita feedback sobre seu trabalho e implementa sugestões",
+          "Auxilia novos membros a se integrarem ao time"
+        ],
+        examples: [
+          "HW/FW: Coordena sessões de debugging em dupla para resolver issue de comunicação I²C em bancada",
+          "Software: Atua como revisor principal em pull requests de colegas, garantindo qualidade",
+          "TI: Documenta e treina equipe de plantão em novos procedimentos de recovery após incidente",
+          "TI: Organizar reunião semanal com compras, financeiro e suporte de campo para alinhamento de estoque e consumos"
+        ]
+      },
+      {
+        summary: "Promove a colaboração contínua, resolve conflitos e conecta pessoas e áreas para entregar resultados integrados.",
+        signals: [
+          "Media discussões técnicas garantindo voz para todos",
+          "Identifica e resolve impedimentos interdependentes rapidamente",
+          "Fomenta um ambiente de confiança e inclusão"
+        ],
+        examples: [
+          "HW/FW: Organiza workshop de integração hardware-firmware para alinhar especificações de interface",
+          "Software: Conduz daily stand-ups e retrospectives, introduzindo práticas que aumentam produtividade",
+          "TI: Facilita reunião cross-funcional entre TI, segurança e desenvolvimento para planejar rollout de políticas",
+          "TI: Facilitar grupo de trabalho interdepartamental para otimizar fluxos de ativação e faturamento de SIM cards"
+        ]
+      },
+      {
+        summary: "Cria e mantém redes colaborativas além do próprio time, influenciando positivamente a cultura organizacional.",
+        signals: [
+          "Inicia programas de mentoria cruzada entre áreas",
+          "Representa o time em comitês ou grupos de afinidade",
+          "Inspira outros a colaborarem, criando comunidades internas"
+        ],
+        examples: [
+          "HW/FW: Lança comunidade técnica interna de IoT, organizando meetups mensais",
+          "Software: Cria e mantém hackathon semestral de inovação de software",
+          "TI: Estabelece canal interno de “Office Hours” de TI para consultoria e compartilhamento",
+          "TI: Criar comunidade interna de “Connectivity Champions” reunindo representantes de todas as áreas"
+        ]
+      }
+    ]
+  },
+  "FEEDBACK_DELIVERY": {
+    displayName: "Feedback",
+    category: "C",
+    description: "Oferece críticas construtivas de maneira respeitosa e orientada a soluções. Sabe apontar pontos de melhoria sem desmotivar, focando em comportamentos e resultados.",
+    milestones: [
+      {
+        summary: "Raramente fornece feedback; quando o faz, é genérico e pouco útil.",
+        signals: [
+          "“Está bom” ou “Precisa melhorar” sem detalhar o que ou como",
+          "Evita dar retorno em PRs ou design reviews",
+          "Foca em falhas pessoais em vez de comportamentos ou resultados"
+        ],
+        examples: [
+          "HW/FW: Comenta em um pull request apenas “Verifique isso” sem indicar o que revisar",
+          "Software: Responde “Parece ok” em PRs sem sugerir melhorias de código ou testes",
+          "TI: Informa “Serviço ok” após revisão de playbook, sem indicar configurações específicas",
+          "TI: “Ok” em revisão de processo de pedido de SIM card, sem sugestões"
+        ]
+      },
+      {
+        summary: "Fornece feedback quando solicitado, mas não aprofunda análise ou sugere soluções.",
+        signals: [
+          "Aponta problemas (“bug aqui”), mas não sugere correções",
+          "Usa linguagem que pode soar crítica, sem orientar próximo passo",
+          "Raramente elogia boas práticas observadas"
+        ],
+        examples: [
+          "HW/FW: Comenta “Seu driver I²C falha neste caso” sem explicar como tratar o NACK",
+          "Software: Indica “Sua função está grande demais” sem sugerir refatoração em módulos",
+          "TI: Diz “Este playbook não funciona em RHEL 8” sem listar mudanças necessárias",
+          "TI: Apontar falha de validação de IMEI sem sugerir como resolver"
+        ]
+      },
+      {
+        summary: "Entrega feedback específico, com exemplos e sugestões de melhoria, balanceando pontos positivos.",
+        signals: [
+          "Aponta melhorias de forma construtiva",
+          "Usa exemplos concretos (“na linha 45, faça X em vez de Y”)",
+          "Propõe referências ou padrões a serem seguidos"
+        ],
+        examples: [
+          "HW/FW: “Ótimo uso de RTOS. Na função de ISR, inclua checagem de overflow no buffer para evitar corromper dados.”",
+          "Software: “O endpoint funciona, mas adicione um teste de integração para o caso de timeouts usando Jest.”",
+          "TI: “A playbook está eficiente. Inclua verificação de idempotência e reporte de status usando Ansible callbacks.”",
+          "TI: Fornecer feedback sobre melhoria de formulário de solicitação, indicando campos obrigatórios e lógica de validação"
+        ]
+      },
+      {
+        summary: "Busca oportunidades para fornecer feedback, conduz revisões em grupo e ajuda colegas a implementar mudanças.",
+        signals: [
+          "Inicia reuniões de design review sem ser solicitado",
+          "Acompanha a aplicação do feedback, oferecendo ajuda prática",
+          "Elogia publicamente melhorias e compartilha aprendizados"
+        ],
+        examples: [
+          "HW/FW: Organiza sessão de pair-debug para revisar e melhorar juntos o driver SPI",
+          "Software: Conduz code review workshop mostrando padrões de arquitetura e refatoração em tempo real",
+          "TI: Facilita café-da-manhã de feedback sobre playbooks, compartilhando boas práticas de YML e idempotência",
+          "TI: Conduzir sessão de feedback cross-team após go-live de novo sistema, propondo ajustes em tempo real"
+        ]
+      },
+      {
+        summary: "Institucionaliza processos de feedback, treina o time em técnicas de comunicação e cria ambientes seguros para troca contínua.",
+        signals: [
+          "Desenvolve guia interno de como dar e receber feedback, promovendo cultura de “growth mindset”",
+          "Treina líderes e pares em técnicas de feedback situacional e escalonado",
+          "Realiza follow-ups para medir impacto do feedback e ajustar abordagens"
+        ],
+        examples: [
+          "HW/FW: Publica e mantém “Playbook de Feedback” para revisões de design e PRs, com templates e exemplos",
+          "Software: Implementa programa de “Feedback Fridays” integrando retrospectives e sessões individuais de mentoria",
+          "TI: Cria workshop “Feedback 360°” para equipes de operações, incluindo role-playing e estudos de caso",
+          "TI: Instituir programa trimestral de feedback de processo de gestão de SIM cards, gerando relatório de melhorias e métricas de satisfação"
+        ]
+      }
+    ]
+  },
+  "FEEDBACK_RECEPTIVENESS": {
+    displayName: "Abertura ao Feedback",
+    category: "C",
+    description: "Busca e recebe feedback de forma aberta, sem defensividade. Reflete sobre as sugestões, ajusta seu comportamento e demonstra evolução contínua.",
+    milestones: [
+      {
+        summary: "Reage defensivamente ou ignora o feedback; sem demonstrar vontade de mudança.",
+        signals: [
+          "Desvaloriza feedback (“isso não faz sentido”)",
+          "Justifica erros em vez de buscar entendimento",
+          "Não implementa alterações sugeridas"
+        ],
+        examples: [
+          "HW/FW: Recebe comentário sobre falha em ISR e mantém o código inalterado",
+          "Software: Ignora sugestão de testes adicionais e fecha o PR sem ajustes",
+          "TI: Desconsidera comentário sobre melhorias no playbook e reverte a mudança de documentação",
+          "TI: Ignorar comentários sobre melhoria de formulário de requisição"
+        ]
+      },
+      {
+        summary: "Aceita o feedback, porém coloca em prática apenas quando lembrado ou solicitado.",
+        signals: [
+          "Agradece pelo feedback, mas demora a implementar",
+          "Precisa de lembretes para revisar o próprio trabalho",
+          "Executa mudanças de forma mecânica, sem compreender o propósito"
+        ],
+        examples: [
+          "HW/FW: Adiciona checagem de overflow após duas solicitações de revisão",
+          "Software: Inclui teste sugerido em Jest somente após ser cobrado nas reuniões diárias",
+          "TI: Atualiza playbook para usar variáveis criptografadas só depois de follow-up do time de segurança",
+          "TI: Implementar sugestão de campo obrigatório apenas após lembrete"
+        ]
+      },
+      {
+        summary: "Recebe e integra feedback de forma autônoma, demonstrando entendimento e melhoria efetiva.",
+        signals: [
+          "Reflete sobre o feedback e propõe mudanças adicionais",
+          "Compartilha no time como aplicou o feedback e os resultados",
+          "Ajusta processos para evitar erros semelhantes no futuro"
+        ],
+        examples: [
+          "HW/FW: Após revisão, refatora driver I²C e documenta como o tratamento de NACK melhorou a confiabilidade",
+          "Software: Implementa sugestão de cobertura de testes e registra no changelog melhorias de qualidade",
+          "TI: Modifica playbook para incluir verificação de idempotência e explica aos colegas o motivo da mudança",
+          "TI: Revisar e aprimorar script de importação de SIM cards com base em feedback recebido, comunicando mudanças ao time"
+        ]
+      },
+      {
+        summary: "Busca feedback ativamente, testa diferentes abordagens e compartilha aprendizados, inspirando o time.",
+        signals: [
+          "Solicita feedback antes de finalizar grandes mudanças",
+          "Realiza experimentos baseados em sugestões e mede resultados",
+          "Reconhece e elogia contribuições de quem ofereceu o feedback"
+        ],
+        examples: [
+          "HW/FW: Organiza revisão de design pré-código e convida colegas de layout e firmware para sugerir melhorias",
+          "Software: Envia draft de arquitetura em RFC e ajusta conforme comentários, compartilhando a versão finalizada",
+          "TI: Planeja sessão de feedback sobre playbooks, coleta sugestões e integra melhorias antes do próximo ciclo",
+          "TI: Solicitar proativamente feedback de usuários de campo sobre o novo dashboard de consumo e ajustar thresholds"
+        ]
+      },
+      {
+        summary: "Estabelece práticas e ferramentas para feedback contínuo, liderando programas de desenvolvimento pessoal e de equipe.",
+        signals: [
+          "Cria canais regulares para troca de feedback estruturado (ex.: “feedback circles”)",
+          "Mentora colegas em como receber e utilizar feedback para progresso de carreira",
+          "Monitora métricas de melhoria pós-feedback e ajusta processos de acordo"
+        ],
+        examples: [
+          "HW/FW: Desenvolve programa de “Code Clinics” onde a equipe revisa e reflete sobre código em grupo, incorporando feedback estruturado",
+          "Software: Lança ferramenta de peer review anônima e treina a equipe no uso para elevar a qualidade dos PRs",
+          "TI: Implanta “Feedback Bot” no chat para coletar e categorizar feedback de playbooks e responder com insights semanais",
+          "TI: Conduzir ciclos formativos de feedback em cada sprint de melhoria de infraestrutura, medindo impacto e refinando processos"
+        ]
+      }
+    ]
   },
 
-  "COMMUNICATION": {
-    "displayName": "Communication",
-    "category": "B",
-    "description": "Shares the right amount of information with the right people, at the right time, and listens effectively",
-    "milestones": [{
-      "summary": "Communicates effectively to close stakeholders when called upon, and incorporates constructive feedback",
-      "signals": [
-        "Communicates project status clearly and effectively",
-        "Collaborates with others with empathy",
-        "Asks for help at the appropriate juncture",
-      ],
-      "examples": [
-        "Updated The Watch before running a backfill",
-        "Updated project status changes in Asana promptly",
-        "Gave thoughtful check-in and check-out comments",
-      ],
-    }, {
-      "summary": "Communicates with the wider team appropriately, focusing on timeliness and good quality conversations",
-      "signals": [
-        "Practises active listening and suspension of attention",
-        "Ensures stakeholders are aware of current blockers",
-        "Chooses the appropriate tools for accurate and timely communication",
-      ],
-      "examples": [
-        "Received and integrated critical feedback positively",
-        "Created cross-team Slack channel for payments work",
-        "Spoke to domain experts before writing spec",
-      ],
-    }, {
-      "summary": "Proactively shares information, actively solicits feedback, and facilitates communication for multiple stakeholders",
-      "signals": [
-        "Resolves communication difficulties between others",
-        "Anticipates and shares schedule deviations in plenty of time",
-        "Manages project stakeholder expectations effectively",
-      ],
-      "examples": [
-        "Directed team response effectively during outages",
-        "Gave a substantial Eng All Hands presentation on React",
-        "Gave notice of upcoming related work in Eng Briefing",
-      ],
-    }, {
-      "summary": "Communicates complex ideas skillfully and with nuance, and establishes alignment within the wider organization",
-      "signals": [
-        "Communicates project risk and tradeoffs skillfully and with nuance",
-        "Contextualizes and clarifies ambiguous direction and strategy for others",
-        "Negotiates resourcing compromises with other teams",
-      ],
-      "examples": [
-        "Lead off-site workshop on interviewing",
-        "Wrote Medium's growth framework and rationale",
-        "Aligned the entire organization around claps",
-      ],
-    }, {
-      "summary": "Influences outcomes at the highest level, moves beyond mere broadcasting, and sets best practices for others",
-      "signals": [
-        "Defines processes for clear communication for the entire team",
-        "Shares the right amount of information with the right people, at the right time",
-        "Develops and delivers plans to execs, the board, and outside investors",
-      ],
-      "examples": [
-        "Organized half year check-in company offsite",
-        "Created the communication plan for a large organizational change",
-        "Presented to the board about key company metrics and projects",
-      ],
-    }],
-  },
-
-  "CRAFT": {
-    "displayName": "Craft",
-    "category": "B",
-    "description": "Embodies and promotes practices to ensure excellent quality products and services",
-    "milestones": [{
-      "summary": "Delivers consistently good quality work",
-      "signals": [
-        "Tests new code thoroughly, both locally, and in production once shipped",
-        "Writes tests for every new feature and bug fix",
-        "Writes clear comments and documentation",
-      ],
-      "examples": [
-        "Caught a bug on Hatch before it went live",
-        "Landed non-trivial PR with no caretaker comments",
-        "Wrote hermetic tests for the happy and sad cases",
-      ],
-    }, {
-      "summary": "Increases the robustness and reliability of codebases, and devotes time to polishing products and systems",
-      "signals": [
-        "Refactors existing code to make it more testable",
-        "Adds tests for uncovered areas",
-        "Deletes unnecessary code and deprecates proactively when safe to do so",
-      ],
-      "examples": [
-        "Requested tests for a PR when acting as reviewer",
-        "Reduced the number of zelda fitzgerald exceptions",
-        "Fixed a TODO for someone else in the codebase",
-      ],
-    }, {
-      "summary": "Improves others' ability to deliver great quality work",
-      "signals": [
-        "Implements systems that enable better testing",
-        "Gives thoughtful code reviews as a domain expert",
-        "Adds tooling to improve code quality",
-      ],
-      "examples": [
-        "Improved PRB to run the same volume of tests faster",
-        "Simplified hermetic test data modification",
-        "Created fixture system for visual quality",
-      ],
-    }, {
-      "summary": "Advocates for and models great quality with proactive actions, and tackles difficult and subtle system issues",
-      "signals": [
-        "Builds systems so as to eliminate entire classes of programmer error",
-        "Focuses the team on quality with regular reminders",
-        "Coordinates Watch priorities and projects",
-      ],
-      "examples": [
-        "Added code coverage reporting to iOS CI pipeline",
-        "Iterated repeatedly to develop Medium's underlines solution",
-        "Defined and oversaw plan for closing Heartbleed vulnerability",
-      ],
-    }, {
-      "summary": "Enables and encourages the entire organization to make quality a central part of the development process",
-      "signals": [
-        "Defines policies for the engineering org that encourage quality work",
-        "Identifies and eliminates single points of failure throughout the organization",
-        "Secures time and resources from execs to support great quality",
-      ],
-      "examples": [
-        "Negotiated resources for Fix-It week with exec team",
-        "Instituted and ensured success of a 20% time policy",
-        "Started The Watch",
-      ],
-    }],
-  },
-
-  "INITIATIVE": {
-    "displayName": "Initiative",
-    "category": "B",
-    "description": "Challenges the status quo and effects positive organizational change outside of mandated work",
-    "milestones": [{
-      "summary": "Identifies opportunities for organizational change or product improvements",
-      "signals": [
-        "Writes Hatch posts about improvement opportunities",
-        "Raises meaningful tensions in tactical meetings",
-        "Asks leadership team probing questions at FAM",
-      ],
-      "examples": [
-        "Wrote about problems with TTR on Hatch",
-        "Wrote about content policy problems on Hatch",
-        "Reported a site issue in Github",
-      ],
-    }, {
-      "summary": "Causes change to positively impact a few individuals or minor improvement to an existing product or service",
-      "signals": [
-        "Picks bugs off the backlog proactively when blocked elsewhere",
-        "Makes design quality improvements unprompted",
-        "Takes on trust and safety tasks proactively when blocked elsewhere",
-      ],
-      "examples": [
-        "Advocated on own behalf for a change in role",
-        "Implemented flow typing for promises",
-        "Audited web client performance in Chrome and proposed fixes",
-      ],
-    }, {
-      "summary": "Causes change to positively impact an entire team or instigates a minor feature or service",
-      "signals": [
-        "Demonstrates concepts proactively with prototypes",
-        "Fixes complicated bugs outside of regular domain",
-        "Takes ownership of systems that nobody owns or wants",
-      ],
-      "examples": [
-        "Defined style guide to resolve style arguments",
-        "Proposed and implemented at-mentions prototype",
-        "Implemented video for Android independently, unprompted",
-      ],
-    }, {
-      "summary": "Effects change that has a substantial positive impact on the engineering organization or a major product impact",
-      "signals": [
-        "Champions and pioneers new technologies to solve new classes of problem",
-        "Exemplifies grit and determination in the face of persistent obstacles",
-        "Instigates major new features, services, or architectures",
-      ],
-      "examples": [
-        "Created the interviewing rubric and booklet",
-        "Implemented and secured support for native login",
-        "Migrated medium2 to mono repo and bazel",
-      ],
-    }, {
-      "summary": "Effects change that has a substantial positive impact on the whole company",
-      "signals": [
-        "Creates a new function to solve systemic issues",
-        "Galvanizes the entire company and garners buy in for a new strategy",
-        "Changes complex organizational processes",
-      ],
-      "examples": [
-        "Migrated the organization from Holacracy",
-        "Built Medium Android prototype and convinced execs to fund it",
-        "Convinced leadership and engineering org to move to Medium Lite architecture",
-      ],
-    }],
-  },
-
-  "CAREER_DEVELOPMENT": {
-    "displayName": "Career development",
-    "category": "C",
-    "description": "Provides strategic support to engineers to help them build the career they want",
-    "milestones": [{
-      "summary": "Gives insight into opportunities and helps identify individuals' strengths and weaknesses",
-      "signals": [
-        "Advocates on behalf and in defense of a group member",
-        "Shares opportunities for improvements and recognises achievements",
-        "Explains appropriate available industry paths",
-      ],
-      "examples": [
-        "Collected and delivered feedback",
-        "Discussed career options and areas of interest informally",
-        "Hosted a Floodgate Academy intern",
-      ],
-    }, {
-      "summary": "Formally supports and advocates for one person and provides tools to help them solve career problems",
-      "signals": [
-        "Ensure a group member has an appropriate role on their team",
-        "Offers effective career advice to group members, without being prescriptive",
-        "Creates space for people to talk through challenges",
-      ],
-      "examples": [
-        "Set up and attended regular, constructive 1:1s",
-        "Provided coaching on how to have difficult conversations",
-        "Taught group members the GROW model",
-      ],
-    }, {
-      "summary": "Inspires and retains a small group of people and actively pushes them to stretch themselves",
-      "signals": [
-        "Discusses paths, and creates plans for personal and professional growth",
-        "Advocates to align people with appropriate roles within organization",
-        "Works with team leads to elevate emerging leaders",
-      ],
-      "examples": [
-        "Reviewed individual group member progression every 6 weeks",
-        "Suggested appropriate group member for Tech Lead position",
-        "Arranged a requested switch of discipline for a group member",
-      ],
-    }, {
-      "summary": "Manages interactions and processes between groups, promoting best practices and setting a positive example",
-      "signals": [
-        "Manages team transitions smoothly, respecting team and individual needs",
-        "Develops best practices for conflict resolution",
-        "Ensures all group members' roles are meeting their career needs",
-      ],
-      "examples": [
-        "Completed training on situational leadership",
-        "Built a resourcing plan based on company, team, and individual goals",
-        "Prevented regretted attrition with intentional, targeted intervention",
-      ],
-    }, {
-      "summary": "Supports the development of a signficant part of the engineering org, and widely viewed as a trusted advisor",
-      "signals": [
-        "Supports and develops senior leaders",
-        "Identified leadership training opportunities for senior leadership",
-        "Pushes everyone to be as good as they can be, with empathy",
-      ],
-      "examples": [
-        "Provided coaching to group leads",
-        "Devised Pathwise curriculum for group leads",
-        "Advocated to execs for engineer development resources and programs",
-      ],
-    }],
-  },
-
-  "ORG_DESIGN": {
-    "displayName": "Org design",
-    "category": "C",
-    "description": "Defines processes and structures that enables the strong growth and execution of a diverse eng organization",
-    "milestones": [{
-      "summary": "Respects and participates in processes, giving meaningful feedback to help the organization improve",
-      "signals": [
-        "Reflects on meetings that leave them inspired or frustrated",
-        "Teaches others about existing processes",
-        "Actively participates and makes contributions within organizational processes",
-      ],
-      "examples": [
-        "Facilitated effective tactical meeting with empathy",
-        "Explained tactical meeting format to a new hire",
-        "Provided feedback on sprint planning meeting",
-      ],
-    }, {
-      "summary": "Identifies opportunities to improve existing processes and makes changes that positively affect the local team",
-      "signals": [
-        "Defines meeting structure and cadence that meets team needs",
-        "Engages in organizational systems thinking",
-        "Advocates for improved diversity and inclusion, and proposes ideas to help",
-      ],
-      "examples": [
-        "Defined Frankenmeeting structure for small team",
-        "Improved Watch on-call rotation scheduling",
-        "Defined standard channels for inter-team communication",
-      ],
-    }, {
-      "summary": "Develops processes to solve ongoing organizational problems",
-      "signals": [
-        "Creates programs that meaningfully improve organizational diversity",
-        "Solves long-standing organizational problems",
-        "Reallocates resources to meet organizational needs",
-      ],
-      "examples": [
-        "Developed baseline team templates for consistency",
-        "Created bug-rotation program to address ongoing quality issues",
-        "Defined Guilds manifesto and charter",
-      ],
-    }, {
-      "summary": "Thinks deeply about organizational issues and identifies hidden dynamics that contribute to them",
-      "signals": [
-        "Evaluates incentive structures and their effect on execution",
-        "Analyzes existing processes for bias and shortfall",
-        "Ties abstract concerns to concrete organizational actions or norms",
-      ],
-      "examples": [
-        "Connected mobile recruiting difficulties to focus on excellence",
-        "Raised leadership level change discrepancies",
-        "Analyzed the hiring rubric for false negative potential",
-      ],
-    }, {
-      "summary": "Leads initiatives to address issues stemming from hidden dynamics and company norms",
-      "signals": [
-        "Builds programs to train leadership in desired skills",
-        "Creates new structures that provide unique growth opportunities",
-        "Leads planning and communication for reorgs",
-      ],
-      "examples": [
-        "Lead efforts to increase number of mobile engineers",
-        "Directed resources to meaningfully improve diversity at all levels",
-        "Built the growth framework rubric",
-      ],
-    }],
-  },
-
-  "WELLBEING": {
-    "displayName": "Wellbeing",
-    "category": "C",
-    "description": "Supports the emotional well-being of group members in difficult times, and celebrates their successes",
-    "milestones": [{
-      "summary": "Uses tools and processes to help ensure colleagues are healthy and happy",
-      "signals": [
-        "Keeps confidences unless legally or morally obliged to do otherwise",
-        "Applies the reasonable person principle to others",
-        "Avoids blame and focuses on positive change",
-      ],
-      "examples": [
-        "Ensured group members were taking enough vacation",
-        "Put themself in another's shoes to understand their perspective",
-        "Checked in with colleague showing signs of burnout",
-      ],
-    }, {
-      "summary": "Creates a positive, supportive, engaging team environment for group members",
-      "signals": [
-        "Sheds light on other experiences to build empathy and compassion",
-        "Validates ongoing work and sustains motivation",
-        "Proposes solutions when teams get bogged down or lose momentum",
-      ],
-      "examples": [
-        "Coordinated a small celebration for a project launch",
-        "Connected tedious A|B testing project with overall company goals",
-        "Noted a team without a recent win and suggested some easy quick wins",
-      ],
-    }, {
-      "summary": "Manages expectations across peers, leads in the org, promotes calm, and prevents consensus building",
-      "signals": [
-        "Trains group members to separate stimulus from response",
-        "Maintains a pulse on individual and team morale",
-        "Helps group members approach problems with curiosity",
-      ],
-      "examples": [
-        "Completed training on transference and counter transference",
-        "Completed training on compromise and negotiation techniques",
-        "Reframed a problem as a challenge, instead of a barrier, when appropriate",
-      ],
-    }, {
-      "summary": "Advocates for the needs of teams and group members, and proactively works to calm the organization",
-      "signals": [
-        "Ensures team environments are safe and inclusive, proactively",
-        "Grounds group member anxieties in reality",
-        "Tracks team retention actively and proposes solutions to strengthen it",
-      ],
-      "examples": [
-        "Relieved org tension around product direction by providing extra context",
-        "Encouraged group members to focus on what they can control",
-        "Guided people through complex organizational change",
-      ],
-    }, {
-      "summary": "Manages narratives, channels negativity into inspiration and motivation, and protects the entire team",
-      "signals": [
-        "Recognizes and points out narratives when appropriate",
-        "Works to reshape narratives from victimization to ownership",
-        "Increases the psychological safety of the entire team",
-      ],
-      "examples": [
-        "Converted group member from a problem haver to a problem solver",
-        "Challenged false narrative and redirected to compassion and empathy",
-        "Cultivated and championed a culture of empathy within the entire team",
-      ],
-    }],
-  },
-
-  "ACCOMPLISHMENT": {
-    "displayName": "Accomplishment",
-    "category": "C",
-    "description": "Inspires day to day excellence, maximises potential and effectively resolves performance issues with compassion",
-    "milestones": [{
-      "summary": "Helps individuals identify blockers and helps them identify next steps for resolution",
-      "signals": [
-        "Notices when someone is stuck and reaches out",
-        "Helps others break down problems into feasible, tangible next steps",
-        "Talks through problems non-judgmentally",
-      ],
-      "examples": [
-        "Completed training on diagnosing problems",
-        "Unblocked a group member",
-        "Reinforces and affirms positive feedback for good work",
-      ],
-    }, {
-      "summary": "Helps individuals resolve difficult performance issues, with insight, compassion, and skill",
-      "signals": [
-        "Gathers context outside the immediate problem",
-        "Recognizes issues within local environment and suggests change",
-        "Works to encourage ownership of actions and responsibilities",
-      ],
-      "examples": [
-        "Completed training on decision making",
-        "Convinced a group member to solve a problem directly, rather than doing it for them",
-        "Gave honest feedback about poor performance, with compassion",
-      ],
-    }, {
-      "summary": "Intervenes in long-standing performance issues with targeted behavior change or performance plans",
-      "signals": [
-        "Aggregates signals of poor performance and creates process for improvement",
-        "Investigates motivation and externalities for consistent poor performance",
-        "Puts together comprehensive, achievable performance plans",
-      ],
-      "examples": [
-        "Worked with group member to address persistent communication failures",
-        "Arranged a transfer to another team, resulting in improved performance",
-        "Managed group member closely to maximise chances of PIP success",
-      ],
-    }, {
-      "summary": "Mediates escalated situations, empowers underperforming teams, and resolves conflict",
-      "signals": [
-        "Recognizes heightened situations and toxic or aggressive interactions",
-        "Inserts themself into conflict where appropriate to calm and mediate",
-        "Encourages open dialog and builds trust between parties in conflict",
-      ],
-      "examples": [
-        "Empowered a team to drive forward amidst uncertainty",
-        "Protected team from externalities so they could focus on goals",
-        "Mediated sit-down between team members to address tension",
-      ],
-    }, {
-      "summary": "Resolves complex organizational dysfunction, or persistent conflict at senior levels",
-      "signals": [
-        "Takes control of dysfunctional teams to organise chaos",
-        "Repairs broken team dynamics and builds harmony",
-        "Presides over a well-oiled team of teams",
-      ],
-      "examples": [
-        "Turned around the performance of a problematic team",
-        "De-escalated serious tensions between teams",
-        "Rebuilt trust between senior team leads",
-      ],
-    }],
+  "STRATEGIC_ALIGNMENT": {
+    displayName: "Alinhamento Estratégico",
+    category: "D",
+    description: "Toma decisões técnicas e de produto alinhadas aos objetivos da empresa. Consegue balancear trade-offs de curto e longo prazo, engajando stakeholders nas prioridades corretas.",
+    milestones: [
+      {
+        summary: "Foca em entregar atividades imediatas sem considerar contexto ou metas maiores.",
+        signals: [
+          "Executa requisitos pontuais sem questionar prioridades",
+          "Não demonstra compreensão dos objetivos de negócio por trás das tarefas",
+          "Comunica progresso só em termos técnicos, sem conectar ao impacto estratégico"
+        ],
+        examples: [
+          "HW/FW: Implementa leitura de sensor conforme pedido, sem avaliar se atende SLA do produto",
+          "Software: Desenvolve endpoint conforme spec, sem verificar metas de latência definidas pelo negócio",
+          "TI: Configura servidor para novas aplicações sem validar requisitos de disponibilidade ou compliance",
+          "TI: Atender pedidos de SIM cards sem considerar orçamento ou metas de custo"
+        ]
+      },
+      {
+        summary: "Entende metas de curto prazo, mas ainda não as traduz em decisões técnicas de forma autônoma.",
+        signals: [
+          "Consulta roadmap ou manager antes de decisões que impactam outras áreas",
+          "Alinha-se a prioridades definidas, mas não propõe ajustes em conflitos",
+          "Comunica-se com stakeholders somente quando solicitado"
+        ],
+        examples: [
+          "HW/FW: Confirma com o PO a taxa de transmissão antes de otimizar módulo LoRa",
+          "Software: Verifica com o PO SLAs de API antes de ajustar timeouts no cliente HTTP",
+          "TI: Consulta equipe de segurança antes de aprovar mudança de firewall, sem questionar regras existentes",
+          "TI: Confirmar prioridade de reposição de estoque com gestor antes de agir"
+        ]
+      },
+      {
+        summary: "Toma decisões informadas, equilibrando trade-offs técnicos e metas de negócio; comunica rationale aos stakeholders.",
+        signals: [
+          "Avalia custo vs. benefício antes de escolher tecnologias ou arquiteturas",
+          "Documenta decisões estratégicas e compartilha as razões com o time",
+          "Propõe ajustes de prioridade quando o impacto no negócio é significativo"
+        ],
+        examples: [
+          "HW/FW: Seleciona entre modem celular ou LoRa baseado em análise de custo de conectividade vs. cobertura regional",
+          "Software: Escolhe banco de dados SQL ou NoSQL considerando volume de leitura/escrita e requisitos de consistência",
+          "TI: Decide migrar workloads para nuvem pública vs. on-prem considerando SLAs, compliance e custos operacionais",
+          "TI: Analisar custo-benefício de planos de dados e propor troca de plano para reduzir despesas em 10 %"
+        ]
+      },
+      {
+        summary: "Antecipates mudanças na estratégia de produto/negócio e realinha o roadmap técnico antes que os impactos aconteçam.",
+        signals: [
+          "Inicia discussões com PM e executivos para ajustar prioridades de arquitetura",
+          "Fornece dashboards e indicadores que orientam decisões executivas",
+          "Facilita workshops de alinhamento entre áreas técnicas e de produto"
+        ],
+        examples: [
+          "HW/FW: Propõe plano de atualização OTA para nova regulamentação de IoT, coordenando times de hardware, firmware e campo",
+          "Software: Cria painel de métricas de negócio (ex.: conversão, latência) ligado ao status dos microserviços, influenciando roadmap",
+          "TI: Desenvolve relatório de custos de cloud vs. on-prem com projeções de uso, ajudando a definir orçamento anual",
+          "TI: Apresentar à diretoria análise de uso de SIM cards por projeto, recomendando realocação para otimizar orçamento"
+        ]
+      },
+      {
+        summary: "Define e evangeliza a visão técnica que orienta toda a organização, alinhando tecnologia, produto e negócio em nível executivo.",
+        signals: [
+          "Co-cria a estratégia tecnológica da empresa com o C-level e traduz em planos de ação claros",
+          "Mentora líderes de área para cultivar visão holística e direcionamento estratégico",
+          "Representa a empresa em fóruns externos como autoridade técnica"
+        ],
+        examples: [
+          "HW/FW: Lança iniciativa de plataforma IoT corporativa, definindo padrões de hardware, firmware e conectividade para expansão global",
+          "Software: Desenvolve e apresenta o “tech vision deck” para stakeholders, definindo roadmap de arquiteturas (event-driven, edge computing) para os próximos 5 anos",
+          "TI: Elabora política corporativa de multicloud que equilibra agilidade, segurança e custo, e forma comitê executivo para governança contínua",
+          "TI: Definir estratégia corporativa de 'Connectivity as a Service', alinhando planos de SIM, modems e contratos com metas de crescimento e ROI"
+        ]
+      }
+    ]
   },
 
   "MENTORSHIP": {
-    "displayName": "Mentorship",
-    "category": "D",
-    "description": "Provides support to colleagues, spreads knowledge, and develops the team outside formal reporting structures",
-    "milestones": [{
-      "summary": "Informally mentors individuals in an ad-hoc way, supports new hires, and conveys institutional knowledge",
-      "signals": [
-        "Makes themself available for informal support and advice",
-        "Acts as sounding board for peers and more junior members",
-        "Provides sound advice when asked",
-      ],
-      "examples": [
-        "Acted as an onboarding buddy",
-        "Paired with an engineer to help them with an unfamiliar area",
-        "Helped a colleague understand their feelings",
-      ],
-    }, {
-      "summary": "Mentors people proactively, and guides people to realizations rather than providing the answer",
-      "signals": [
-        "Takes time to explain concepts and best practices",
-        "Asks questions to illuminate concepts, rather than stating them",
-        "Allows others to lead efforts when it will help their development",
-      ],
-      "examples": [
-        "Shared interesting article with a team member to help with their growth",
-        "Offered unprompted feedback to help growth, with empathy",
-        "Lead from behind to support someone new to a leadership role",
-      ],
-    }, {
-      "summary": "Teaches small groups of engineers and contributes to Medium's shared knowledge base",
-      "signals": [
-        "Avoids siloing information when it can be usefully shared with others",
-        "Works to increase the bus factor of systems",
-        "Finds tools that work best for a team member's personality",
-      ],
-      "examples": [
-        "Gave a brown bag presentation on payments",
-        "Wrote Hatch post on avoiding RDS backfill issues",
-        "Wrote Medium-U content module",
-      ],
-    }, {
-      "summary": "Encourages people to mentor each other, and creates ways for them to do so",
-      "signals": [
-        "Defines an entire curriculum for a discipline",
-        "Draws positive attention to well-modeled mentor and teaching behaviours",
-        "Creates brown bag series and lines up speakers",
-      ],
-      "examples": [
-        "Created and lead Medium's Women in Eng group",
-        "Organized an Eng All Hands with an outside speaker",
-        "Designed and taught web client guild curriculum",
-      ],
-    }, {
-      "summary": "Instills and promotes a culture of learning and development within the team",
-      "signals": [
-        "Sets incentive structures to recognise and reward mentorship",
-        "Empowers team members to develop themselves",
-        "Role models productive and healthy mentor relationships",
-      ],
-      "examples": [
-        "Instituted the professional education budget for engineers",
-        "Mentored mentors",
-        "Started the eng advisor program and lined up external mentors",
-      ],
-    }],
+    displayName: "Mentoria",
+    category: "D",
+    description: "Mentora colegas compartilhando experiências, orientando no desenvolvimento de habilidades e apoiando o crescimento individual. Facilita o aprendizado em pares e revisões de trabalho.",
+    milestones: [
+      {
+        summary: "Oferece ajuda apenas quando solicitado, de forma reativa e limitada.",
+        signals: [
+          "Responde a dúvidas técnicas básicas no canal, mas não aprofunda explicações",
+          "Indica referências genéricas sem guiar o aprendiz em como usar",
+          "Não verifica se o colega entendeu ou aplicou o conselho"
+        ],
+        examples: [
+          "HW/FW: Explica rapidamente como configurar o osciloscópio para um novo colega, sem demonstrar exemplos práticos",
+          "Software: Envia link para documentação do framework, sem mostrar código de exemplo ou contexto",
+          "TI: Orienta acesso ao inventário de ativos, mas não mostra como criar relatórios a partir dele",
+          "TI: Responder dúvidas sobre SIM cards quando solicitado, mas sem aprofundar"
+        ]
+      },
+      {
+        summary: "Planeja breves sessões de orientação, mas sem acompanhamento contínuo.",
+        signals: [
+          "Agenda 1:1 pontual para revisar código ou configuração",
+          "Fornece exemplos simples e sugere exercícios práticos",
+          "Registra dicas em documento interno, mas não revisita os resultados"
+        ],
+        examples: [
+          "HW/FW: Conduz mini-workshop sobre debouncing em GPIO e compartilha slides ou script de teste",
+          "Software: Realiza código walkthrough de um módulo React, apontando padrões e antipadrões",
+          "TI: Demonstra como criar playbook básico no Ansible e compartilha snippet anotado",
+          "TI: Agendar 1:1 para explicar uso básico do Snipe-IT, mas sem acompanhar implementação"
+        ]
+      },
+      {
+        summary: "Acompanha o desenvolvimento de colegas, dando feedback regular e monitorando progresso.",
+        signals: [
+          "Realiza sessões de mentoria periódicas com agenda clara e metas de aprendizado",
+          "Revisita tópicos anteriores para garantir absorção do conhecimento",
+          "Incentiva colegas a praticar em projetos reais e acompanha resultados"
+        ],
+        examples: [
+          "HW/FW: Guia junior na implementação de testes HIL completos, revisando resultados e sugerindo melhorias",
+          "Software: Cria trilha de aprendizado (tutorial + projeto) para novos devs em microserviços, revisando código entregue",
+          "TI: Prepara plano de desenvolvimento para analista júnior em automação de infraestrutura e revisa scripts entregues",
+          "TI: Orientar analista júnior na automação de importação de SIM cards, revisando scripts entregues"
+        ]
+      },
+      {
+        summary: "Estrutura programas de mentoria que impactam múltiplas pessoas e times, criando materiais e processos.",
+        signals: [
+          "Desenvolve currículo de treinamento e capacita outros mentores",
+          "Avalia métricas de sucesso (ex.: tempo de ramp-up, feedback dos mentorados)",
+          "Ajusta programa com base em resultados e feedback"
+        ],
+        examples: [
+          "HW/FW: Lança programa “Bootcamp de Firmware” com módulos teóricos e práticos, medindo evolução em radar de competências",
+          "Software: Cria catálogo de projetos de exemplo e exercícios, conduz “office hours” semanais para todo o time",
+          "TI: Desenvolve academias internas de Ansible e Kubernetes, com certificação prática e dashboards de progresso",
+          "TI: Estruturar programa de treinamento em gestão de SIM cards e modems, com exercícios e avaliações práticas"
+        ]
+      },
+      {
+        summary: "Define a cultura de mentoria na empresa, influenciando políticas de desenvolvimento de carreira e promovendo aprendizado contínuo.",
+        signals: [
+          "Institui processos formais de mentoria, capacitando líderes e mensurando impacto no engajamento",
+          "Representa a empresa em conferências e comunidades para compartilhar práticas de mentoria",
+          "Mentora outros mentores, criando uma rede de desenvolvimento interno"
+        ],
+        examples: [
+          "HW/FW: Publica e mantém portal de mentoria em IoT, incluindo vídeos, guias interativos e sessões AMA",
+          "Software: Cria e gerencia programa de “Tech Fellowship”, selecionando e orientando mentores seniores",
+          "TI: Define política de desenvolvimento de talentos em TI, com ciclos de mentoria 1:1, workshops trimestrais e métricas de retenção",
+          "TI: Lançar “TI Academy” sobre conectividade móvel, ministrando treinamentos e certificando participantes"
+        ]
+      }
+    ]
   },
 
-  "EVANGELISM": {
-    "displayName": "Evangelism",
-    "category": "D",
-    "description": "Promotes Medium to the outside world and establishes it as an attractive and thoughtful place to work",
-    "milestones": [{
-      "summary": "Represents Medium well externally, and influences individuals positively",
-      "signals": [
-        "Shares personal and organizational successes with their network",
-        "Attends Medium-hosted events and talks with guests",
-        "Communicates genuine and honest excitement about their work externally",
-      ],
-      "examples": [
-        "Shared a Medium product launch post on Facebook",
-        "Acted as a guide for a non-friend visitor to the office",
-        "Supported PR efforts by giving a quote or having a photo taken",
-      ],
-    }, {
-      "summary": "Participates more centrally in small events, and takes simple actions that positively influence groups of people",
-      "signals": [
-        "Takes meaningful action to introduce people to Medium",
-        "Joined public Slack group and represented Medium appropriately, and well",
-        "Organizes positive small- or medium-sized events that bring people to Medium",
-      ],
-      "examples": [
-        "Volunteered as a helper for CODE2040 writing workshop",
-        "Organized a short tour of the office by college students",
-        "Talked at a Women Who Code event hosted at Medium",
-      ],
-    }, {
-      "summary": "Works hard to positively influence large groups of people on their views of Medium",
-      "signals": [
-        "Mentors or participates in a high visibility way in an external organization",
-        "Builds fruitful partnerships with external organizations",
-        "Writes blog posts about Medium that receive moderate traffic",
-      ],
-      "examples": [
-        "Represented Medium on a panel at a conference of industry experts",
-        "Established close ties with Creative Commons",
-        "Built a durable, long-standing relationship with Code2040",
-      ],
-    }, {
-      "summary": "Establishes Medium as an great, innovative company and workplace to the whole industry",
-      "signals": [
-        "Establishes themself as an industry thought leader who attracts talent",
-        "Publishes material about Medium's organizational or technical innovations",
-        "Leverages significant following to evangelise Medium",
-      ],
-      "examples": [
-        "Published a paper on Medium technology in a peer-reviewed journal",
-        "Authored joint-press release with EFF on DNT",
-        "Published “Why Content Editable Is Terrible” on the Medium engineering blog",
-      ],
-    }, {
-      "summary": "Introduces Medium in a positive light to a wider audience outside the industry",
-      "signals": [
-        "Delivers key messages to broad, mainstream audiences",
-        "Influences people with large audiences to talk about Medium positively",
-        "Drives recognition and adoption of Medium in significant numbers",
-      ],
-      "examples": [
-        "Published or interviewed in a mainstream newspaper or website outside tech",
-        "Keynoted a conference with international attention",
-        "Represented Medium in national televised media",
-      ],
-    }],
-  },
-
-  "RECRUITING": {
-    "displayName": "Recruiting",
-    "category": "D",
-    "description": "Strengthens Medium's team by bringing in excellent staff members",
-    "milestones": [{
-      "summary": "Brings new candidates into the pipeline and understands how to evaluate candidates at Medium",
-      "signals": [
-        "Reviews existing network for hiring leads regularly",
-        "Shadows interviews to gain familiarity with process",
-        "Reviews current job postings regularly",
-      ],
-      "examples": [
-        "Completed interview calibration",
-        "Set up casual sessions to practice asking questions",
-        "Referred appropriate individuals for open positions",
-      ],
-    }, {
-      "summary": "Interviews regularly, helps the team make meaningful hiring decisions, and helps build a diverse pipeline",
-      "signals": [
-        "Uses interview rubric to provide clear, objective feedback on candidates",
-        "Interviews candidates with empathy and treats them all with equal respect",
-        "Researches approaches for sourcing candidates and diversifying hiring",
-      ],
-      "examples": [
-        "Added observable evidence for every rating",
-        "Started a monthly brunch for candidates to meet Medium employees",
-        "Tested a new service for quality and diversity of candidates",
-      ],
-    }, {
-      "summary": "Maintains and strengthens the integrity of the current process, and regularly brings in great candidates",
-      "signals": [
-        "Teaches new interviewers how to interview with empathy",
-        "Models great interview technique and feedback when shadowed",
-        "Reverse shadows trainees and helps calibrate their feedback",
-      ],
-      "examples": [
-        "Wrote new interview question which meets our question quality criteria",
-        "Brought candidates into our pipeline proactively, with a high conversion rate",
-        "Proposed useful, tangible improvements to the interview process",
-      ],
-    }, {
-      "summary": "Actively contributes to and leads hiring decisions, and goes to great lengths to source great candidates",
-      "signals": [
-        "Documents subtle cues in interviews that indicate values alignment",
-        "Makes hiring decisions, resolving discrepancies between conflicting reports",
-        "Top-grades candidates and teases out character traits",
-      ],
-      "examples": [
-        "Planned engineering summit on interview process and training",
-        "Organized and lead Medium's presence at a recruitment fair",
-        "Started CODE2040 internship program",
-      ],
-    }, {
-      "summary": "Sets recruitment strategy, invests in long-term relationships for critical roles, and recruits at scale",
-      "signals": [
-        "Sets the tone, policy and goals around building a diverse, high-quality team",
-        "Identifies and brings in promising acquisitions",
-        "Tracks industry activity, identifying opportunities for critical roles",
-      ],
-      "examples": [
-        "Talked with a senior candidate over many months to fill a critical role",
-        "Organized efforts around convincing acquired engineers to join and stay",
-        "Set goals, then tracked and reported metrics on team demographics over time",
-      ],
-    }],
-  },
-
-  "COMMUNITY": {
-    "displayName": "Community",
-    "category": "D",
-    "description": "Builds community internally, gives of themself to the team, and champions and extols company values",
-    "milestones": [{
-      "summary": "Is available and present on current teams, and works to contribute positively to company culture",
-      "signals": [
-        "Participates in team activities and offsites",
-        "Treats colleagues and clients with respect",
-        "Joins groups or committees outside regular duties",
-      ],
-      "examples": [
-        "Joined and actively participated in the web client guild",
-        "Brought a small gift back from vacation for the team",
-        "Wrote entertaining and informative Prod Ops writeups on Hatch",
-      ],
-    }, {
-      "summary": "Steps up, builds connectedness, and takes concrete actions to promote an inclusive culture",
-      "signals": [
-        "Makes space for others to participate",
-        "Collaborates with other engineers outside direct responsibilities",
-        "Finds ways to ramp up and engage new hires quickly",
-      ],
-      "examples": [
-        "Created onboarding bingo",
-        "Brought shy and introverted people into a dominant conversation",
-        "Volunteered as secretary for a team",
-      ],
-    }, {
-      "summary": "Contributes to improving team relatedness, and helps build a culture of lending support",
-      "signals": [
-        "Takes on additional Watch shifts at short notice",
-        "Pitches in to help other teams hit deadlines, without missing own deadlines",
-        "Uses position to raise difficult issues on someone's behalf",
-      ],
-      "examples": [
-        "Lead Watch cycles with little support while still contributing to projects",
-        "Started and drove the LGBTQIA ERG",
-        "Stayed positive and improved team morale during period after layoffs",
-      ],
-    }, {
-      "summary": "Exemplifies selflessness for the team without compromising responsibilities, and lifts everyone up",
-      "signals": [
-        "Goes above and beyond on the Watch, serving the team without complaint",
-        "Implements concrete programs to signficantly improve team inclusivity",
-        "Takes on large amounts of tedious grunt work for the team without being asked",
-      ],
-      "examples": [
-        "Devoted large amount of time to helping outside direct responsibilities",
-        "Refactored hundreds of legacy Shepherd nodes",
-        "Acted as sole maintainer of Boxen for years",
-      ],
-    }, {
-      "summary": "Lives the company values, guards positive culture, and defines policies that support relatedness between teams",
-      "signals": [
-        "Brings separate teams together to build relatedness",
-        "Holds individuals, teams, and leadership accountable to Medium's values",
-        "Sets the tone, policy, and goals around maintaining an inclusive company",
-      ],
-      "examples": [
-        "Organized wine and olive tasting offsite to Napa for the whole engineering org",
-        "Devised, delivered and acted on findings from an engineer happiness survey",
-        "Challenged and corrected exclusionary behaviour or policies",
-      ],
-    }],
+  "VISION": {
+    displayName: "Visão",
+    category: "D",
+    description: "Enxerga o impacto da tecnologia no negócio e no usuário final. Antecipada tendências, propõe inovações e orienta roadmaps de produto para atender metas de mercado e clientes.",
+    milestones: [
+      {
+        summary: "Trabalha nas tarefas atribuídas sem considerar o impacto de longo prazo ou o contexto de produto.",
+        signals: [
+          "Concentra-se apenas na entrega técnica imediata",
+          "Não demonstra interesse pela estratégia de produto ou mercado",
+          "Não questiona requisitos além do escopo definido"
+        ],
+        examples: [
+          "HW/FW: Implementa leitura de sensor conforme requisito, sem avaliar uso futuro dos dados",
+          "Software: Adiciona logging básico a um microserviço sem conectar isso a métricas de negócio",
+          "TI: Configura novo servidor de backup sem considerar crescimento previsto de dados",
+          "TI: Executar atividades de gestão de SIM cards sem considerar tendências tecnológicas"
+        ]
+      },
+      {
+        summary: "Reconhece objetivos de médio prazo, mas não integra visão de produto ao propor soluções técnicas.",
+        signals: [
+          "Menciona metas de projeto em discussões, mas não as traduz em requisitos técnicos",
+          "Busca entender roadmap, mas ainda não age proativamente para suportá-lo",
+          "Comunica restrições de tecnologia sem propor alternativas"
+        ],
+        examples: [
+          "HW/FW: Ajusta frequência de amostragem do sensor para atender SLA de coleta diário, mas sem otimizar consumo de energia",
+          "Software: Escolhe biblioteca de análise de dados mencionada no roadmap, mas não valida escalabilidade",
+          "TI: Planeja capacidade de armazenamento para três meses, sem alinhar com projeções de crescimento de usuários",
+          "TI: Compartilhar roadmap de planos de dados com o time, mas sem propor inovação"
+        ]
+      },
+      {
+        summary: "Conecta requisitos de produto, usuário e tecnologia para propor soluções coesas de médio e longo prazo.",
+        signals: [
+          "Propõe design de sistema considerando jornada do usuário e restrições técnicas",
+          "Documenta impacto de decisões tecnológicas no roadmap de produto",
+          "Compartilha insights de mercado/competição com a equipe"
+        ],
+        examples: [
+          "HW/FW: Desenha fluxo de dados end-to-end para sensor IoT, incluindo gateway LoRa e integração com dashboard de cliente",
+          "Software: Arquitetura front-to-back que alinha UX com performance de API, garantindo SLAs de resposta",
+          "TI: Elabora plano de adoção de cloud híbrida que equilibra custo, performance e requisitos regulatórios",
+          "TI: Propor integração de SIM cards com IoT interno para coleta de métricas de energia predial"
+        ]
+      },
+      {
+        summary: "Antecipates tendências tecnológicas e de mercado, liderando PoCs que validam novas oportunidades de produto.",
+        signals: [
+          "Identifica e avalia novas tecnologias (e.g., ML embarcado, edge computing, 5G) para casos de uso da empresa",
+          "Aplica resultados de pesquisa em propostas de roadmap e MVPs",
+          "Engaja stakeholders em discussões visionárias e demonstra valor da inovação"
+        ],
+        examples: [
+          "HW/FW: Coordena PoC de ML embarcado em ESP32 para detecção de anomalias, medindo impacto em consumo de energia",
+          "Software: Implementa PoC de processamento de vídeo em edge com WebAssembly, comparando performance em campo",
+          "TI: Conduz teste de conectividade 5G e satellite failover para garantir cobertura total em unidades remotas",
+          "TI: Conduzir PoC de conectividade redundante (4G + satélite) para sites remotos, medindo latência e confiabilidade"
+        ]
+      },
+      {
+        summary: "Cria frameworks e diretrizes de arquitetura corporativa, alinhando tecnologia a objetivos de negócio e mercado.",
+        signals: [
+          "Define e evangeliza roadmaps de longo prazo com C-level",
+          "Lidera comunidades e eventos focados em tendências tecnológicas",
+          "Seleciona parcerias estratégicas e define padrões corporativos"
+        ],
+        examples: [
+          "HW/FW: Publica e patrocina plataforma modular de IoT que serve como base para todos os futuros produtos, com diretrizes de expansão",
+          "Software: Desenvolve “Tech Vision Deck” multianual que orienta arquiteturas de microserviços, segurança e dados para os próximos 5 anos",
+          "TI: Define estratégia de multicloud e edge que reduz custos em 30% e melhora SLAs globais, coordenando com fornecedores e stakeholders",
+          "TI: Definir visão de “Edge Connectivity Platform” que consolida todas as dimensões de conectividade da empresa em serviço gerenciado"
+        ]
+      }
+    ]
   },
 }
 
@@ -1192,16 +1396,29 @@ export const categoryColorScale = d3.scaleOrdinal()
   .domain(categoryIds)
   .range(['#00abc2', '#428af6', '#e1439f', '#e54552'])
 
+/**
+ * "Y"-shaped career progression:
+ * - Base (individual contributor through Senior)
+ * - At ~66 points, branches into
+ *    • Technical track: Staff → Principal
+ *    • Leadership track: Tech Lead → Engineering Manager → Director
+ */
 export const titles = [
-  {label: 'Engineer I', minPoints: 0, maxPoints: 16},
-  {label: 'Engineer II', minPoints: 17, maxPoints: 35},
-  {label: 'Senior Engineer', minPoints: 36, maxPoints: 57},
-  {label: 'Group Lead', minPoints: 36, maxPoints: 57},
-  {label: 'Staff Engineer', minPoints: 58, maxPoints: 89},
-  {label: 'Senior Group Lead', minPoints: 58, maxPoints: 89},
-  {label: 'Principal Engineer', minPoints: 90},
-  {label: 'Director of Engineering', minPoints: 90}
-]
+  // Base IC levels (1.x)
+  { label: 'Intern',                minPoints:   0,  maxPoints:  39 },   // 1.1–1.3
+  { label: 'Junior Engineer',       minPoints:  40, maxPoints:  79 },   // 2.1–2.3
+  { label: 'Engineer',              minPoints:  80, maxPoints: 146 },   // 3.1–3.3
+  { label: 'Senior Engineer',       minPoints: 147, maxPoints: 211 },   // 4.1–4.3
+
+  // Branch into senior IC vs. lead
+  { label: 'Staff Engineer',        minPoints: 212, maxPoints: 232 },   // 5.1–5.2
+  { label: 'Tech Lead',             minPoints: 212, maxPoints: 259 },   // 5.1–5.3
+
+  // Top tier roles
+  { label: 'Principal Engineer',    minPoints: 260, maxPoints: 287 },   // 6.1–6.2
+  { label: 'Engineering Manager',   minPoints: 260, maxPoints: 287 },   // 6.1–6.2
+  { label: 'Director of Engineering', minPoints:288, maxPoints:320 },   // 6.2–6.3
+];
 
 export const eligibleTitles = (milestoneMap: MilestoneMap): string[] => {
   const totalPoints = totalPointsFromMilestoneMap(milestoneMap)

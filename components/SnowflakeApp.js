@@ -50,52 +50,53 @@ const emptyState = (): SnowflakeAppState => {
     name: '',
     title: '',
     milestoneByTrack: {
-      'MOBILE': 0,
-      'WEB_CLIENT': 0,
-      'FOUNDATIONS': 0,
-      'SERVERS': 0,
-      'PROJECT_MANAGEMENT': 0,
-      'COMMUNICATION': 0,
-      'CRAFT': 0,
-      'INITIATIVE': 0,
-      'CAREER_DEVELOPMENT': 0,
-      'ORG_DESIGN': 0,
-      'WELLBEING': 0,
-      'ACCOMPLISHMENT': 0,
-      'MENTORSHIP': 0,
-      'EVANGELISM': 0,
-      'RECRUITING': 0,
-      'COMMUNITY': 0
+      IMPLEMENTATION: 0,
+      QUALITY_TESTING: 0,
+      DEBUGGING_MONITORING: 0,
+      UNDERSTANDING_CODE: 0,
+      SYSTEM_DESIGN: 0,
+      PROJECT_MANAGEMENT: 0,
+      PRIORITISATION_DEPENDENCIES: 0,
+      ADAPTABILITY_CHANGE: 0,
+      RELIABILITY_ACCOUNTABILITY: 0,
+      COMMUNICATION_SHARING: 0,
+      TEAMWORK_RELATIONSHIPS: 0,
+      FEEDBACK_DELIVERY: 0,
+      FEEDBACK_RECEPTIVENESS: 0,
+      STRATEGIC_ALIGNMENT: 0,
+      MENTORSHIP: 0,
+      VISION: 0,
     },
-    focusedTrackId: 'MOBILE'
-  }
-}
+    focusedTrackId: 'IMPLEMENTATION',
+  };
+};
+
 
 const defaultState = (): SnowflakeAppState => {
   return {
     name: 'Cersei Lannister',
     title: 'Staff Engineer',
     milestoneByTrack: {
-      'MOBILE': 1,
-      'WEB_CLIENT': 2,
-      'FOUNDATIONS': 3,
-      'SERVERS': 2,
-      'PROJECT_MANAGEMENT': 4,
-      'COMMUNICATION': 1,
-      'CRAFT': 1,
-      'INITIATIVE': 4,
-      'CAREER_DEVELOPMENT': 3,
-      'ORG_DESIGN': 2,
-      'WELLBEING': 0,
-      'ACCOMPLISHMENT': 4,
-      'MENTORSHIP': 2,
-      'EVANGELISM': 2,
-      'RECRUITING': 3,
-      'COMMUNITY': 0
+      IMPLEMENTATION: 1,
+      QUALITY_TESTING: 2,
+      DEBUGGING_MONITORING: 3,
+      UNDERSTANDING_CODE: 2,
+      SYSTEM_DESIGN: 4,
+      PROJECT_MANAGEMENT: 4,
+      PRIORITISATION_DEPENDENCIES: 1,
+      ADAPTABILITY_CHANGE: 4,
+      RELIABILITY_ACCOUNTABILITY: 3,
+      COMMUNICATION_SHARING: 1,
+      TEAMWORK_RELATIONSHIPS: 1,
+      FEEDBACK_DELIVERY: 2,
+      FEEDBACK_RECEPTIVENESS: 2,
+      STRATEGIC_ALIGNMENT: 3,
+      MENTORSHIP: 2,
+      VISION: 0,
     },
-    focusedTrackId: 'MOBILE'
-  }
-}
+    focusedTrackId: 'IMPLEMENTATION',
+  };
+};
 
 const stateToHash = (state: SnowflakeAppState) => {
   if (!state || !state.milestoneByTrack) return null
@@ -156,7 +157,7 @@ class SnowflakeApp extends React.Component<Props, SnowflakeAppState> {
           }
         `}</style>
         <div style={{margin: '19px auto 0', width: 142}}>
-          <a href="https://medium.com/" target="_blank">
+          <a href="https://zeusagro.com/" target="_blank">
             <Wordmark />
           </a>
         </div>

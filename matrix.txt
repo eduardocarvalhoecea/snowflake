@@ -1,0 +1,25 @@
+Technical Skills	
+	Code	
+		Implementation
+		Quality and testing
+		Debugging & Monitoring
+		Understanding Code
+		System Design
+	Delivery	
+		Project Management
+		Prioritisation & Dependencies 
+		Adaptability & Change
+		Reliability & Accountability
+Soft Skills	
+	Collaboration	
+		Communication & Sharing
+		Teamwork & Relationships
+	Feedback	
+		Feedback Delivery
+		Feedback Receptiveness
+	Leadership	
+		Strategic Alignment
+		Mentorship
+		Vision
+
+-------
